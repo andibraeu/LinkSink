@@ -1,0 +1,65 @@
+{% extends 'CalciferBundle::layout.html.twig' %}
+
+{% block css %}
+    {% stylesheets filter="compass"
+    "@CalciferBundle/Resources/assets/css/events.scss" %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    "@CalciferBundle/Resources/assets/js/events.js" %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body -%}
+    <div class="ui one column page grid title">
+        <div class="ui column">
+            <h1 class="ui header">
+                Wiederholende Termine
+            </h1>
+        </div>
+    </div>
+
+    <div class="ui one column page grid stackable">
+        <div class="column">
+            <table class="ui table">
+                <thead>
+                <tr>
+                    <th>Zusammenfassung</th>
+                    <th>Nächstes Datum</th>
+                    <th>Wiederholungsmuster</th>
+                    <th>Aktionen</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>
+                            {{ entity.summary }}
+                        </td>
+                        <td>
+                            {{ entity.nextdate.format('Y-m-d H:i') }}
+                        </td>
+                        <td>
+                            {{ entity.getFormatedRepeatPattern() }}
+                        </td>
+                        <td>
+                            <a href="{{ path('repeating_event_edit', {'slug':entity.slug}) }}">Bearbeiten</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><a href="{{ path('repeating_event_new') }}">Neuen wiederholenden Termin anlegen</a></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

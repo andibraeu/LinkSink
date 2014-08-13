@@ -1,0 +1,36 @@
+{% extends 'FreifunkLinkSinkBundle::layout.html.twig' %}
+
+{% block css %}
+    {% stylesheets filter="compass"
+        "@FreifunkLinkSinkBundle/Resources/assets/css/links.scss"
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    "@FreifunkLinkSinkBundle/Resources/assets/js/events.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body -%}
+    <div class="ui one column page grid title">
+        <div class="ui column">
+            <h1>
+                Links 
+                {% if tag|default(false) %} für Tag „{{ tag.name }}“{% endif %}
+                {% if location|default(false) %} für Ort „{{ location.name }}“{% endif %}
+            </h1>
+        </div>
+    </div>
+
+    <div class="ui three column page grid stackable">
+        {% for entity in entities %}
+            {{ include('FreifunkLinkSinkBundle:Link:event_box.html.twig',{'truncate_summary':true}) }}
+        {% endfor %}
+    </div>
+
+{% endblock %}

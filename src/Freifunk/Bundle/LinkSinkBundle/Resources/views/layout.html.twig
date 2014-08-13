@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{% block title %}Linkverwaltung Freifunk LinkSink{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    {% stylesheets filter="compass"
+        "@FreifunkLinkSinkBundle/Resources/assets/css/main.scss"
+        "css/semantic.scss"
+        "css/custom.scss"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+    {% endstylesheets %}
+    {% block css %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+{% include "FreifunkLinkSinkBundle::navigation.html.twig" %}
+
+<div class="ui one column page grid">
+    <div class="column">
+        <div id="mission-statement" class="ui message green">
+            {% image '@FreifunkLinkSinkBundle/Resources/assets/images/logo.png' %}
+            {% endimage %}
+        </div>
+    </div>
+</div>
+
+<div id="main" class="segment">
+    {% block body %}{% endblock %}
+</div>
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<script src="{{ asset('js/jquery.js') }}"></script>
+<!-- Include all JavaScripts, compiled by Assetic -->
+<script src="{{ asset('js/semantic.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

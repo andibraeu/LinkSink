@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  top: 0;
+}
+
+header .ui.grid > .column, .title.ui.grid > .column {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.box h2 {
+  font-size: 1rem !important;
+}
+
+a .icon {
+  text-decoration: none;
+}
+
+a, a:hover, a:visited {
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#mission-statement {
+  overflow: hidden;
+
+  img {
+    margin-bottom: 0;
+  }
+}
