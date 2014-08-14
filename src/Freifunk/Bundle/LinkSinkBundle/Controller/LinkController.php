@@ -10,6 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
+
 
 /**
  * Link controller.
@@ -30,26 +33,21 @@ class LinkController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $now = new \DateTime();
-        $now->setTime(0,0,0);
-        /** @var QueryBuilder $qb */
-        /**$qb = $em->createQueryBuilder();
+        $qb = $em->createQueryBuilder();
         $qb ->select(array('e'))
-            ->from('CalciferBundle:Event', 'e')
-            ->where('e.startdate >= :startdate')
-            ->orderBy('e.startdate')
-            ->setParameter('startdate',$now);
-        $entities = $qb->getQuery()->execute();*/
+            ->from('LinkSinkBundle:Link', 'e')
+            ->orderBy('e.pubdate');
+        $entities = $qb->getQuery()->execute();
 
         return array(
-            'entities' => 'empty',
+            'entities' => $entities,
         );
     }
 
     /**
      * Displays a form to create a new Event entity.
      *
-     * @Route("/termine/neu", name="_new")
+     * @Route("/link/neu", name="_new")
      * @Method("GET")
      * @Template()
     */
