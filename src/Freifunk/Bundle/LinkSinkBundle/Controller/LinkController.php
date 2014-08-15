@@ -196,7 +196,7 @@ class LinkController extends Controller
         $entity->url = $request->get('url');
         $entity->enclosure = $request->get('enclosure');
 
-        $entity->slug = \URLify::filter($entity->description, 255, 'de');
+        $entity->slug = \URLify::filter($entity->title, 255, 'de');
 
         $tags = $request->get('tags');
         if (strlen($tags) > 0) {
@@ -220,7 +220,7 @@ class LinkController extends Controller
             }
             return $em;
         }
-        return $em;
+        //return $em;
     }
 
 
