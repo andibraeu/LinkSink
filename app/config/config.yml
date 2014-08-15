@@ -28,6 +28,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    cache: false
 
 # Assetic Configuration
 assetic:
@@ -36,6 +37,10 @@ assetic:
     bundles:        [ FreifunkLinkSinkBundle ]
     #java: /usr/bin/java
     filters:
+        less:
+          node: /usr/bin/node
+          node_paths: [/usr/lib/node_modules]
+          apply_to: "\.less$"
         cssrewrite: ~
         compass: ~
         #closure:
@@ -68,3 +73,9 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+services:
+    twig.extension.text:
+      class: Twig_Extensions_Extension_Text
+      tags:
+        - { name: twig.extension }
