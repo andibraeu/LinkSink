@@ -1,0 +1,109 @@
+<form method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
+    <div class="ui form segment">
+        <div class="field">
+            <label class="control-label required" for="link_startdate">Veröffentlichungsdatum</label>
+
+            <div class="ui left labeled icon input">
+                <input type="datetime"
+                       id="link_pubdate"
+                       name="pubdate"
+                       required="required"
+                       value="{{ entity.pubdate.format('Y-m-d')|default('') }}"
+                       placeholder="{{ "now"|date('d.m.Y') }}"
+                       class="form-control">
+
+                <i class="icon calendar"></i>
+
+                <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="control-label required" for="link_guid">GUID</label>
+
+            <div class="ui left labeled icon input">
+                <input type="text"
+                       id="link_guid"
+                       name="guid"
+                       maxlength="255"
+                       value="{{ entity.guid|default('') }}"
+                       class="form-control">
+                <i class="icon globe"></i>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <label class="control-label required" for="link_description">Beschreibung</label>
+
+            <div class="ui left labeled icon input attached-label">
+                <textarea name="description">{{ entity.description|default('') }}</textarea>
+                <div class="ui bottom attached label">Du kannst hier <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> benutzen.</div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="control-label required" for="link_title">Titel</label>
+
+            <div class="ui left labeled icon input">
+                <input type="text"
+                       id="link_title"
+                       name="title"
+                       maxlength="255"
+                       value="{{ entity.title|default('') }}"
+                       class="form-control">
+                <i class="icon globe"></i>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <label class="control-label required" for="link_url">URL</label>
+
+            <div class="ui left labeled icon input">
+                <input type="text"
+                       id="link_url"
+                       name="url"
+                       maxlength="255"
+                       value="{{ entity.url|default('') }}"
+                       class="form-control">
+                <i class="icon globe"></i>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="control-label required" for="link_enclosure">Medienlink</label>
+
+            <div class="ui left labeled icon input">
+                <input type="text"
+                       id="link_enclosure"
+                       name="enclosure"
+                       maxlength="255"
+                       value="{{ entity.enclosure|default('') }}"
+                       class="form-control">
+                <i class="icon globe"></i>
+            </div>
+        </div>
+
+
+
+        <div class="field">
+            <label class="" for="link_tags">Tags</label>
+
+            <div class="ui left icon input attached-label">
+                <input type="text"
+                       id="link_tags"
+                       name="tags"
+                       value="{{ entity.getTagsAsText() }}"
+                       class="form-control">
+                <i class="icon tag"></i>
+                <div class="ui bottom attached label">Du kannst hier kommasepariert <a href="https://en.wikipedia.org/wiki/Tag_%28metadata%29">Tags</a> angeben.</div>
+            </div>
+        </div>
+
+        <input type="submit" class="ui button blue" value="Speichern"/>
+    </div>
+
+</form>

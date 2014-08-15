@@ -10,7 +10,7 @@
 
 {% block javascripts %}
     {% javascripts
-    "@FreifunkLinkSinkBundle/Resources/assets/js/events.js"
+    "@FreifunkLinkSinkBundle/Resources/assets/js/links.js"
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -22,7 +22,6 @@
             <h1>
                 Links 
                 {% if tag|default(false) %} für Tag „{{ tag.name }}“{% endif %}
-                {% if location|default(false) %} für Ort „{{ location.name }}“{% endif %}
             </h1>
         </div>
     </div>

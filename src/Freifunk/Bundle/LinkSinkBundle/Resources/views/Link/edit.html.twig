@@ -1,10 +1,10 @@
-{% extends 'CalciferBundle::layout.html.twig' %}
+{% extends 'FreifunkLinkSinkBundle::layout.html.twig' %}
 
 {% block css %}
     {% stylesheets filter="compass"
-    "@CalciferBundle/Resources/assets/css/jquery.datetimepicker.scss"
-    "@CalciferBundle/Resources/assets/css/events.scss"
-    "@CalciferBundle/Resources/assets/css/leaflet.scss"
+    "@FreifunkLinkSinkBundle/Resources/assets/css/jquery.datetimepicker.scss"
+    "@FreifunkLinkSinkBundle/Resources/assets/css/links.scss"
+    "@FreifunkLinkSinkBundle/Resources/assets/css/leaflet.scss"
     %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -12,9 +12,9 @@
 
 {% block javascripts %}
     {% javascripts
-    "@CalciferBundle/Resources/assets/js/jquery.datetimepicker.js"
-    "@CalciferBundle/Resources/assets/js/events.js"
-    "@CalciferBundle/Resources/assets/js/leaflet.js"
+    "@FreifunkLinkSinkBundle/Resources/assets/js/jquery.datetimepicker.js"
+    "@FreifunkLinkSinkBundle/Resources/assets/js/links.js"
+    "@FreifunkLinkSinkBundle/Resources/assets/js/leaflet.js"
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -29,7 +29,7 @@
 
     <div class="ui one column page grid">
         <div class="ui column">
-            {{ include('CalciferBundle:Event:event_form.html.twig',{'entity':entity}) }}
+            {{ include('FreifunkLinkSinkBundle:Link:link_form.html.twig',{'entity':entity}) }}
         </div>
     </div>
 

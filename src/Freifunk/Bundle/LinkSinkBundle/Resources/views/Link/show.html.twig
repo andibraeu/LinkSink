@@ -1,8 +1,8 @@
-{% extends 'CalciferBundle::layout.html.twig' %}
+{% extends 'FreifunkLinkSinkBundle::layout.html.twig' %}
 
 {% block css %}
     {% stylesheets filter="compass"
-    "@CalciferBundle/Resources/assets/css/events.scss"
+    "@FreifunkLinkSinkBundle/Resources/assets/css/links.scss"
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -10,7 +10,7 @@
 
 {% block javascripts %}
     {% javascripts
-    "@CalciferBundle/Resources/assets/js/events.js"
+    "@FreifunkLinkSinkBundle/Resources/assets/js/links.js"
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -18,6 +18,6 @@
 
 {% block body -%}
     <div class="ui one column page grid">
-      {{ include('CalciferBundle:Event:event_box.html.twig',{'entity' : entity}) }}
+      {{ include('FreifunkLinkSinkBundle:Link:event_box.html.twig',{'entity' : entity}) }}
     </div>
 {% endblock %}

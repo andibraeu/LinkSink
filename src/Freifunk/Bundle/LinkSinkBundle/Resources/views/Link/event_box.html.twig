@@ -1,7 +1,7 @@
 <div class="ui column">
     <div class="ui segment event box">
         <h2 class="ui dividing header segment green inverted"><a
-                    href="{{ path('_show', { 'slug': entity.slug }) }}">{{ entity.summary }}</a>
+                    href="{{ path('_show', { 'slug': entity.slug }) }}">{{ entity.description }}</a>
         </h2>
 
         <p class="edit">
@@ -9,18 +9,12 @@
                         class="circular icon edit green inverted link"></i>Bearbeiten</a>
         </p>
 
-        <p class="startdate ">
-            <i class="circular icon calendar green inverted link" title="Wann?"
-               data-content="Wann?"></i>{{ entity.startdate.format('Y-m-d H:i') }}
+        <p class="pubdate ">
+            <i class="circular icon calendar green inverted link" title="Veröffentlicht am"
+               data-content="veröffentlicht_am?"></i>{{ entity.pubdate.format('Y-m-d') }}
         </p>
 
-        {% if entity.location is not null %}
-            <p class="location">
-                <a href="{{ path('location_show', {'slug' : entity.location.slug }) }}"><i
-                            class="circular icon map marker green inverted link" title="Wo?"
-                            data-content="Wo?"></i>{{ entity.location.name }}</a>
-            </p>
-        {% endif %}
+
         {% if entity.tags|length > 0 %}
             <ul class="tags">
                 {% for tag in entity.tags %}
@@ -38,7 +32,7 @@
 
         <div class="ui clearing divider"></div>
 
-        {% if truncate_summary|default(false) %}
+        {% if truncate_description|default(false) %}
             <p>{{ entity.description|truncate(255)|markdown }}</p>
         {% else %}
             <p>{{ entity.description|markdown }}</p>
