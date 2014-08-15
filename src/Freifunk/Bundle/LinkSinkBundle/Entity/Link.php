@@ -90,4 +90,8 @@ class Link extends BaseEntity {
      */
     protected $tags = [];
 
+    public function isValid() {
+        return true;
+    }
+
 }
