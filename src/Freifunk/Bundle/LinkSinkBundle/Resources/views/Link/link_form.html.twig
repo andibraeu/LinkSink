@@ -1,7 +1,7 @@
 <form method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
     <div class="ui form segment">
         <div class="field">
-            <label class="control-label required" for="link_startdate">Veröffentlichungsdatum</label>
+            <label class="control-label required" for="link_pubdate">Veröffentlichungsdatum</label>
 
             <div class="ui left labeled icon input">
                 <input type="datetime"
@@ -20,23 +20,9 @@
             </div>
         </div>
 
-        <div class="field">
-            <label class="control-label required" for="link_guid">GUID</label>
-
-            <div class="ui left labeled icon input">
-                <input type="text"
-                       id="link_guid"
-                       name="guid"
-                       maxlength="255"
-                       value="{{ entity.guid|default('') }}"
-                       class="form-control">
-                <i class="icon globe"></i>
-            </div>
-        </div>
-
 
         <div class="field">
-            <label class="control-label required" for="link_description">Beschreibung</label>
+            <label class="" for="link_description">Beschreibung</label>
 
             <div class="ui left labeled icon input attached-label">
                 <textarea name="description">{{ entity.description|default('') }}</textarea>
@@ -51,6 +37,7 @@
                 <input type="text"
                        id="link_title"
                        name="title"
+                       required="required"
                        maxlength="255"
                        value="{{ entity.title|default('') }}"
                        class="form-control">
@@ -66,6 +53,7 @@
                 <input type="text"
                        id="link_url"
                        name="url"
+                       required="required"
                        maxlength="255"
                        value="{{ entity.url|default('') }}"
                        class="form-control">
@@ -74,7 +62,7 @@
         </div>
 
         <div class="field">
-            <label class="control-label required" for="link_enclosure">Medienlink</label>
+            <label class="" for="link_enclosure">Medienlink</label>
 
             <div class="ui left labeled icon input">
                 <input type="text"
