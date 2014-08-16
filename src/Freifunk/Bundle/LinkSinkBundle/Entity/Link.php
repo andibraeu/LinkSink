@@ -8,7 +8,13 @@
 
 namespace Freifunk\Bundle\LinkSinkBundle\Entity;
 
+use Argentum\FeedBundle\Feed\FeedItemGuid;
 use Doctrine\ORM\Mapping as ORM;
+
+use Argentum\FeedBundle\Feed\Feedable;
+use Argentum\FeedBundle\Feed\FeedItem;
+use Argentum\FeedBundle\Feed\FeedItemEnclosure;
+use Argentum\FeedBundle\Feed\FeedItemSource;
 
 /**
  * Description of Link
@@ -28,7 +34,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="links")
  * @ORM\Entity
  */
-class Link extends BaseEntity {
+class Link extends BaseEntity implements Feedable {
 
     use TagTrait;
 
@@ -92,6 +98,42 @@ class Link extends BaseEntity {
 
     public function isValid() {
         return true;
+    }
+
+    /**
+     * Returns FeedItem instance.
+     *
+     * @return FeedItem
+     */
+    public function getFeedItem(){
+        $item = new FeedItem();
+
+        $item
+            //->setRouteName('tags'.$this->slug)
+            ->setRouteParameters([
+                'category' => 'testcat',//$this->getCategory()->getSlug(),
+                'id' => $this->id,
+                'slug' => $this->slug,
+            ])
+            ->setTitle($this->title)
+            ->setDescription($this->description)
+            ->setLink($this->url)
+            ->setGuid(new FeedItemGuid($this->guid))
+            ->setPubDate($this->pubdate);
+
+       /* if ($this->getImageMedium()) {
+            $item->addEnclosure(
+                new FeedItemEnclosure($this->getImageMedium()['path'], 'image/jpeg')
+            );
+        }
+
+        if ($this->getSourceTitle()) {
+            $item->setSource(
+                new FeedItemSource($this->getSourceTitle(), $this->getSourceUrl())
+            );
+        }*/
+
+        return $item;
     }
 
 }

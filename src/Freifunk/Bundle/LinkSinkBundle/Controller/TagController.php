@@ -57,47 +57,18 @@ class TagController extends Controller
         $qb->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
             ->join('e.tags', 't', 'WITH', $qb->expr()->in('t.id', $tag->id))
-            ->orderBy('e.pubdate');
+            ->orderBy('e.pubdate', 'desc');
         $entities = $qb->getQuery()->execute();
 
-        if ($format == 'ics') {
-//            $calendar = new Calendar();
-//            $calendar->setProdId('-//My Company//Cool Calendar App//EN');
-//
-//            foreach ($entities as $entity) {
-//                /** @var Event $entity */
-//                $event = new CalendarEvent();
-//                $event->setStart($entity->startdate);
-//                if ($entity->enddate instanceof \DateTime)
-//                    $event->setEnd($entity->enddate);
-//                $event->setSummary($entity->summary);
-//                $event->setDescription($entity->description);
-//                $event->setUrl($entity->url);
-//                if ($entity->location instanceof Location) {
-//                    $location = new \Jsvrcek\ICS\Model\Description\Location();
-//                    $location->setName($entity->location->name);
-//                    $event->setLocations([$location]);
-//                    if (\is_float($entity->location->lon) && \is_float($entity->location->lat)) {
-//                        $geo = new Geo();
-//                        $geo->setLatitude($entity->location->lat);
-//                        $geo->setLongitude($entity->location->lon);
-//                        $event->setGeo($geo);
-//                    }
-//                }
-//                $calendar->addEvent($event);
-//            }
-//
-//            $calendarExport = new CalendarExport(new CalendarStream, new Formatter());
-//            $calendarExport->addCalendar($calendar);
-//
-//            //output .ics formatted text
-//            $result = $calendarExport->getStream();
-//
-//            $response = new Response($result);
-//            $response->headers->set('Content-Type', 'text/calendar');
-//
-//            return $response;
-            return '';
+        if ($format == 'rss') {
+            $rss = $this->get('argentum_feed.factory')
+                ->createFeed('news')
+                ->addFeedableItems($entities)
+                ->render();
+
+            $response = new Response($rss);
+            $response->headers->set('Content-Type', 'text/xml');
+            return $response;
         } else {
             return array(
                 'entities' => $entities,
