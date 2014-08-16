@@ -195,6 +195,7 @@ class LinkController extends Controller
         $entity->title = $request->get('title');
         $entity->url = $request->get('url');
         $entity->enclosure = $request->get('enclosure');
+        $entity->category = $request->get('category');
 
         $entity->slug = \URLify::filter($entity->title, 255, 'de');
 

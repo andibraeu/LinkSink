@@ -30,6 +30,7 @@ use Argentum\FeedBundle\Feed\FeedItemSource;
  * @property string $title
  * @property string $url
  * @property string $enclosure
+ * @property string $category
  * @property array $tags
  *
  * @ORM\Table(name="links")
