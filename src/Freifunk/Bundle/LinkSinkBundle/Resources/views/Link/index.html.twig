@@ -21,8 +21,11 @@
         <div class="ui column">
             <h1>
                 Links 
-                {% if tag|default(false) %} für Tag „{{ tag.name }}“{% endif %}
+                {% if tag|default(false) %}für Tag „{{ tag.name }}“{% endif %}
             </h1>
+            {% if tag|default(false) %}
+            <a href="{{ path('tag_show',{'slug' : tag.slug }) }}.rss"><i class="icon rss"></i>Link zum Feed</a>
+            {% endif %}
         </div>
     </div>
 

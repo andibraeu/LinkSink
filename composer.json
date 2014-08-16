@@ -36,7 +36,8 @@
         "enko/ics": "~0.1",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "jbroadway/urlify" : "~1.0"
+        "jbroadway/urlify" : "~1.0",
+        "argentum/feed-bundle": "1.0.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

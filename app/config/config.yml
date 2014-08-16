@@ -74,6 +74,13 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+argentum_feed:
+    channels:
+        news:
+            title: '%feed_title%'
+            link: '%feed_link%'
+            description: '%feed_desc%'
+
 services:
     twig.extension.text:
       class: Twig_Extensions_Extension_Text
