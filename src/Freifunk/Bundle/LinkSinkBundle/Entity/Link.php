@@ -8,6 +8,7 @@
 
 namespace Freifunk\Bundle\LinkSinkBundle\Entity;
 
+use Argentum\FeedBundle\Feed\FeedItemCategory;
 use Argentum\FeedBundle\Feed\FeedItemGuid;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -86,6 +87,15 @@ class Link extends BaseEntity implements Feedable {
     protected $enclosure;
 
     /**
+     *
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255, nullable=true)
+     */
+    protected $category;
+
+
+    /**
      * @var array
      *
      * @ORM\ManyToMany(targetEntity="Tag")
@@ -111,11 +121,12 @@ class Link extends BaseEntity implements Feedable {
         $item
             //->setRouteName('tags'.$this->slug)
             ->setRouteParameters([
-                'category' => 'testcat',//$this->getCategory()->getSlug(),
+                'category' => $this->category,
                 'id' => $this->id,
                 'slug' => $this->slug,
             ])
             ->setTitle($this->title)
+            ->addCategory(new FeedItemCategory($this->category))
             ->setDescription($this->description)
             ->setLink($this->url)
             ->setGuid(new FeedItemGuid($this->guid))
