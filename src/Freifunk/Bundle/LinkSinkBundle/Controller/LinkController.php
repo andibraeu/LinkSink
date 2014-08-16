@@ -190,7 +190,7 @@ class LinkController extends Controller
         $pubdate = $request->get('pubdate');
         $pubdate = new \DateTime($pubdate);
         $entity->pubdate = $pubdate;
-        $entity->guid = $request->get('guid');
+        $entity->guid = $request->get('url');
         $entity->description = $request->get('description');
         $entity->title = $request->get('title');
         $entity->url = $request->get('url');
