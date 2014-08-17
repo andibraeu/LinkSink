@@ -16,3 +16,6 @@ parameters:
     debug_toolbar: true
     debug_redirects: false
     use_assetic_controller: true
+    feed_title: 'Gesammelte Links zu Freifunk'
+    feed_desc: 'Dieser Feed wird mit LinkSink erstellt, einer Plattform, wo man Links zu Themen hinterlässt'
+    feed_link: /
