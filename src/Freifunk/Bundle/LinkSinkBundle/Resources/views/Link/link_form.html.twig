@@ -41,7 +41,7 @@
                        maxlength="255"
                        value="{{ entity.title|default('') }}"
                        class="form-control">
-                <i class="icon globe"></i>
+                <i class="icon bullseye"></i>
                 <div class="ui corner label">
                     <i class="icon asterisk"></i>
                 </div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="four wide field">
-                <label class="" for="link_enclosure">Medienlänge</label>
+                <label class="" for="link_enclosure">Medienlänge in Byte</label>
 
                 <div class="ui left labeled icon input">
                     <input type="text"
@@ -97,7 +97,7 @@
                            maxlength="255"
                            value="{{ entity.enclosure.length|default('') }}"
                            class="form-control">
-                    <i class="icon globe"></i>
+                    <i class="icon file outline"></i>
 
                 </div>
             </div>
@@ -112,44 +112,46 @@
                            pattern=".*\/.*"
                            value="{{ entity.enclosure.type|default('') }}"
                            class="form-control">
-                    <i class="icon globe"></i>
+                    <i class="icon inbox"></i>
 
                 </div>
             </div>
         </div>
-        <div class="field">
-            <label class="control-label required" for="link_category">Kategorie</label>
-            <div class="ui left labeled input">
-                <div class="ui dropdown selection fluid">
-                    <input name="category" type="hidden" value="{{ entity.category|default('') }}">
-                    <div class="default text">Bitte wähle eine Kategorie aus</div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item" data-value="presse">Presse</div>
-                        <div class="item" data-value="radio">Radio</div>
-                        <div class="item" data-value="tv">Fernsehen</div>
-                        <div class="item" data-value="podcast">Podcast</div>
-                    </div>
-                    <div class="ui corner label">
-                        <i class="icon asterisk"></i>
+        <div class="fields">
+            <div class="four wide field">
+                <label class="control-label required" for="link_category">Kategorie</label>
+                <div class="ui left labeled input">
+                    <div class="ui dropdown selection fluid">
+                        <input name="category" type="hidden" value="{{ entity.category|default('') }}">
+                        <div class="default text">Bitte wähle eine Kategorie aus</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item" data-value="presse">Presse</div>
+                            <div class="item" data-value="radio">Radio</div>
+                            <div class="item" data-value="tv">Fernsehen</div>
+                            <div class="item" data-value="podcast">Podcast</div>
+                        </div>
+                        <div class="ui corner label">
+                            <i class="icon asterisk"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
 
-        <div class="field">
-            <label class="" for="link_tags">Tags</label>
+            <div class="twelve wide field">
+                <label class="" for="link_tags">Tags</label>
 
-            <div class="ui left icon input attached-label">
-                <input type="text"
-                       id="link_tags"
-                       name="tags"
-                       value="{{ entity.getTagsAsText() }}"
-                       class="form-control">
-                <i class="icon tag"></i>
-                <div class="ui bottom attached label">Du kannst hier kommasepariert <a href="https://en.wikipedia.org/wiki/Tag_%28metadata%29">Tags</a> angeben.</div>
+                <div class="ui left icon input attached-label">
+                    <input type="text"
+                           id="link_tags"
+                           name="tags"
+                           value="{{ entity.getTagsAsText() }}"
+                           class="form-control">
+                    <i class="icon tag"></i>
+                    <div class="ui bottom attached label">Du kannst hier kommasepariert <a href="https://en.wikipedia.org/wiki/Tag_%28metadata%29">Tags</a> angeben.</div>
+                </div>
             </div>
         </div>
 
