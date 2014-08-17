@@ -97,13 +97,14 @@
                 <i class="icon globe"></i>
 
             </div>
-            <label class="" for="link_enclosure">Medientyp</label>
+            <label class="" for="link_enclosure">Medientyp (MIME-Type)</label>
 
             <div class="ui left labeled icon input">
                 <input type="text"
                        id="link_enclosuretype"
                        name="enclosuretype"
                        maxlength="255"
+                       pattern=".*\/.*"
                        value="{{ entity.enclosure.type|default('') }}"
                        class="form-control">
                 <i class="icon globe"></i>
