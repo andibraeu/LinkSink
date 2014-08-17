@@ -68,23 +68,53 @@
         </div>
 
         <div class="field">
+            <input type="hidden"
+                   id="link_enclosureid"
+                   name="enclosureid"
+                   value="{{ entity.enclosure.id|default('') }}">
+
             <label class="" for="link_enclosure">Medienlink</label>
 
             <div class="ui left labeled icon input">
                 <input type="text"
-                       id="link_enclosure"
-                       name="enclosure"
+                       id="link_enclosureurl"
+                       name="enclosureurl"
                        maxlength="255"
-                       value="{{ entity.enclosure|default('') }}"
+                       value="{{ entity.enclosure.url|default('') }}"
                        class="form-control">
                 <i class="icon globe"></i>
+
+            </div>
+            <label class="" for="link_enclosure">Medienlänge</label>
+
+            <div class="ui left labeled icon input">
+                <input type="text"
+                       id="link_enclosurelength"
+                       name="enclosurelength"
+                       maxlength="255"
+                       value="{{ entity.enclosure.length|default('') }}"
+                       class="form-control">
+                <i class="icon globe"></i>
+
+            </div>
+            <label class="" for="link_enclosure">Medientyp</label>
+
+            <div class="ui left labeled icon input">
+                <input type="text"
+                       id="link_enclosuretype"
+                       name="enclosuretype"
+                       maxlength="255"
+                       value="{{ entity.enclosure.type|default('') }}"
+                       class="form-control">
+                <i class="icon globe"></i>
+
             </div>
         </div>
 
         <div class="field">
             <label class="control-label required" for="link_category">Kategorie</label>
             <div class="ui left labeled icon category">
-                <select class="ui left icon category" id="link_category" name="category">
+                <select class="ui left icon category dropdown" id="link_category" name="category">
                     <option value="presse">Presse</option>
                     <option value="radio">Radio</option>
                     <option value="tv">Fernsehen</option>

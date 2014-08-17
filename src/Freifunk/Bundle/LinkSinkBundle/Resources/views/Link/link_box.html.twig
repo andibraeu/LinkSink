@@ -30,6 +30,12 @@
             </p>
         {% endif %}
 
+        {%  if entity.enclosure.url is not null %}
+            <p class="enclosure">
+                <a href="{{ entity.enclosure.url }}"><i class="circular icon file-sound-o green inverted link"></i>{{ entity.enclosure.url }}</a>
+            </p>
+        {% endif %}
+
         <div class="ui clearing divider"></div>
 
         {% if truncate_description|default(false) %}

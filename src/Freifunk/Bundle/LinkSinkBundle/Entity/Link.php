@@ -11,6 +11,7 @@ namespace Freifunk\Bundle\LinkSinkBundle\Entity;
 use Argentum\FeedBundle\Feed\FeedItemCategory;
 use Argentum\FeedBundle\Feed\FeedItemGuid;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\EntityManager;
 
 use Argentum\FeedBundle\Feed\Feedable;
 use Argentum\FeedBundle\Feed\FeedItem;
@@ -29,7 +30,7 @@ use Argentum\FeedBundle\Feed\FeedItemSource;
  * @property string $description
  * @property string $title
  * @property string $url
- * @property string $enclosure
+ * @property Enclosure $enclosure
  * @property string $category
  * @property array $tags
  *
@@ -78,12 +79,15 @@ class Link extends BaseEntity implements Feedable {
      * @ORM\Column(name="url", type="string", length=255)
      */
     protected $url;
-    
-    /** 
-     *
-     * @var string
-     * 
-     * @ORM\Column(name="enclosure", type="string", length=255, nullable=true)
+
+    /**
+     * @ORM\Column(name="enclosure_id", type="integer", nullable=true)
+     **/
+    protected $enclosure_id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Enclosure")
+     * @ORM\JoinColumn(name="enclosure_id", referencedColumnName="id")
      */
     protected $enclosure;
 
@@ -122,23 +126,25 @@ class Link extends BaseEntity implements Feedable {
         $item
             //->setRouteName('tags'.$this->slug)
             ->setRouteParameters([
-                'category' => $this->category,
-                'id' => $this->id,
-                'slug' => $this->slug,
+                'category' => $this->getCategory(),
+                'id' => $this->getId(),
+                'slug' => $this->getSlug(),
             ])
-            ->setTitle($this->title)
-            ->addCategory(new FeedItemCategory($this->category))
-            ->setDescription($this->description)
-            ->setLink($this->url)
-            ->setGuid(new FeedItemGuid($this->guid))
-            ->setPubDate($this->pubdate);
+            ->setTitle($this->getTitle())
+            ->addCategory(new FeedItemCategory($this->getCategory()))
+            ->setDescription($this->getDescription())
+            ->setLink($this->getUrl())
+            ->setGuid(new FeedItemGuid($this->getGuid()))
+            ->setPubDate($this->getPubdate());
 
-       /* if ($this->getImageMedium()) {
+       if ($this->getEnclosure()) {
+            $enclosure = $this->getEnclosure();
             $item->addEnclosure(
-                new FeedItemEnclosure($this->getImageMedium()['path'], 'image/jpeg')
+                new FeedItemEnclosure($enclosure->getUrl(), $enclosure->getType(), $enclosure->getLength())
             );
         }
 
+        /*
         if ($this->getSourceTitle()) {
             $item->setSource(
                 new FeedItemSource($this->getSourceTitle(), $this->getSourceUrl())
@@ -148,4 +154,264 @@ class Link extends BaseEntity implements Feedable {
         return $item;
     }
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set pubdate
+     *
+     * @param \DateTime $pubdate
+     * @return Link
+     */
+    public function setPubdate($pubdate)
+    {
+        $this->pubdate = $pubdate;
+
+        return $this;
+    }
+
+    /**
+     * Get pubdate
+     *
+     * @return \DateTime 
+     */
+    public function getPubdate()
+    {
+        return $this->pubdate;
+    }
+
+    /**
+     * Set guid
+     *
+     * @param string $guid
+     * @return Link
+     */
+    public function setGuid($guid)
+    {
+        $this->guid = $guid;
+
+        return $this;
+    }
+
+    /**
+     * Get guid
+     *
+     * @return string 
+     */
+    public function getGuid()
+    {
+        return $this->guid;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Link
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Link
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Link
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return Link
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Link
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set enclosure
+     *
+     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure $enclosure
+     * @return Link
+     */
+    public function setEnclosure(\Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure $enclosure = null)
+    {
+        $this->enclosure = $enclosure;
+
+        return $this;
+    }
+
+    /**
+     * Get enclosure
+     *
+     * @return \Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure 
+     */
+    public function getEnclosure()
+    {
+        return $this->enclosure;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags
+     * @return Link
+     */
+    public function addTag(\Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+   
+
+    /**
+     * Set enclosure_id
+     *
+     * @param integer $enclosureId
+     * @return Link
+     */
+    public function setEnclosureId($enclosureId)
+    {
+        $this->enclosure_id = $enclosureId;
+
+        return $this;
+    }
+
+    /**
+     * Get enclosure_id
+     *
+     * @return integer 
+     */
+    public function getEnclosureId()
+    {
+        return $this->enclosure_id;
+    }
 }

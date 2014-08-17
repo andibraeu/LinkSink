@@ -25,7 +25,7 @@ class LinkType extends AbstractType {
             ->add('description')
             ->add('title')
             ->add('url')
-            ->add('enclosure')
+            ->add('enclosure_id')
             ->add('category', 'choice', array(
                 'choices' => array(
                     'presse' => 'Presse',
