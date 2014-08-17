@@ -114,13 +114,21 @@
 
         <div class="field">
             <label class="control-label required" for="link_category">Kategorie</label>
-            <div class="ui left labeled icon category">
-                <select class="ui left icon category dropdown" id="link_category" name="category">
-                    <option value="presse">Presse</option>
-                    <option value="radio">Radio</option>
-                    <option value="tv">Fernsehen</option>
-                    <option value="podcast">Podcast</option>
-                </select>
+            <div class="ui left labeled input">
+                <div class="ui dropdown selection fluid">
+                    <input name="category" type="hidden" value="{{ entity.category|default('') }}">
+                    <div class="default text">Bitte wähle eine Kategorie aus</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item" data-value="presse">Presse</div>
+                        <div class="item" data-value="radio">Radio</div>
+                        <div class="item" data-value="tv">Fernsehen</div>
+                        <div class="item" data-value="podcast">Podcast</div>
+                    </div>
+                    <div class="ui corner label">
+                        <i class="icon asterisk"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
