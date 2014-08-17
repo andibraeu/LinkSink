@@ -14,7 +14,7 @@ jQuery(document).ready(function () {
     }
 
     if (jQuery('input[type=datetime]').length > 0) {
-        jQuery('input[type=datetime]').datetimepicker({lang: 'de', format: 'Y-m-d'});
+        jQuery('input[type=datetime]').datetimepicker({lang: 'de', format: 'Y-m-d',timepicker:false});
     }
 
     if (jQuery('#map').length == 1) {
