@@ -67,51 +67,56 @@
             </div>
         </div>
 
-        <div class="field">
-            <input type="hidden"
-                   id="link_enclosureid"
-                   name="enclosureid"
-                   value="{{ entity.enclosure.id|default('') }}">
+        <div class="fields">
+            <div class="eight wide field">
+                <input type="hidden"
+                       id="link_enclosureid"
+                       name="enclosureid"
+                       value="{{ entity.enclosure.id|default('') }}">
 
-            <label class="" for="link_enclosure">Medienlink</label>
+                <label class="" for="link_enclosure">Medienlink</label>
 
-            <div class="ui left labeled icon input">
-                <input type="text"
-                       id="link_enclosureurl"
-                       name="enclosureurl"
-                       maxlength="255"
-                       value="{{ entity.enclosure.url|default('') }}"
-                       class="form-control">
-                <i class="icon globe"></i>
+                <div class="ui left labeled icon input">
+                    <input type="text"
+                           id="link_enclosureurl"
+                           name="enclosureurl"
+                           maxlength="255"
+                           value="{{ entity.enclosure.url|default('') }}"
+                           class="form-control">
+                    <i class="icon globe"></i>
 
+                </div>
             </div>
-            <label class="" for="link_enclosure">Medienlänge</label>
+            <div class="four wide field">
+                <label class="" for="link_enclosure">Medienlänge</label>
 
-            <div class="ui left labeled icon input">
-                <input type="text"
-                       id="link_enclosurelength"
-                       name="enclosurelength"
-                       maxlength="255"
-                       value="{{ entity.enclosure.length|default('') }}"
-                       class="form-control">
-                <i class="icon globe"></i>
+                <div class="ui left labeled icon input">
+                    <input type="text"
+                           id="link_enclosurelength"
+                           name="enclosurelength"
+                           maxlength="255"
+                           value="{{ entity.enclosure.length|default('') }}"
+                           class="form-control">
+                    <i class="icon globe"></i>
 
+                </div>
             </div>
-            <label class="" for="link_enclosure">Medientyp (MIME-Type)</label>
+            <div class="four wide field">
+                <label class="" for="link_enclosure">Medientyp (MIME-Type)</label>
 
-            <div class="ui left labeled icon input">
-                <input type="text"
-                       id="link_enclosuretype"
-                       name="enclosuretype"
-                       maxlength="255"
-                       pattern=".*\/.*"
-                       value="{{ entity.enclosure.type|default('') }}"
-                       class="form-control">
-                <i class="icon globe"></i>
+                <div class="ui left labeled icon input">
+                    <input type="text"
+                           id="link_enclosuretype"
+                           name="enclosuretype"
+                           maxlength="255"
+                           pattern=".*\/.*"
+                           value="{{ entity.enclosure.type|default('') }}"
+                           class="form-control">
+                    <i class="icon globe"></i>
 
+                </div>
             </div>
         </div>
-
         <div class="field">
             <label class="control-label required" for="link_category">Kategorie</label>
             <div class="ui left labeled input">
