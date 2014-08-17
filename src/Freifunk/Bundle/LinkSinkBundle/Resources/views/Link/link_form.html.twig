@@ -1,36 +1,6 @@
 <form method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
     <div class="ui form segment">
         <div class="field">
-            <label class="control-label required" for="link_pubdate">Veröffentlichungsdatum</label>
-
-            <div class="ui left labeled icon input">
-                <input type="datetime"
-                       id="link_pubdate"
-                       name="pubdate"
-                       required="required"
-                       value="{{ entity.pubdate.format('Y-m-d')|default('') }}"
-                       placeholder="{{ "now"|date('d.m.Y') }}"
-                       class="form-control">
-
-                <i class="icon calendar"></i>
-
-                <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="field">
-            <label class="" for="link_description">Beschreibung</label>
-
-            <div class="ui left labeled icon input attached-label">
-                <textarea name="description">{{ entity.description|default('') }}</textarea>
-                <div class="ui bottom attached label">Du kannst hier <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> benutzen.</div>
-            </div>
-        </div>
-
-        <div class="field">
             <label class="control-label required" for="link_title">Titel</label>
 
             <div class="ui left labeled icon input">
@@ -64,6 +34,36 @@
                 <div class="ui corner label">
                     <i class="icon asterisk"></i>
                 </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="control-label required" for="link_pubdate">Veröffentlichungsdatum</label>
+
+            <div class="ui left labeled icon input">
+                <input type="datetime"
+                       id="link_pubdate"
+                       name="pubdate"
+                       required="required"
+                       value="{{ entity.pubdate.format('Y-m-d')|default('') }}"
+                       placeholder="{{ "now"|date('d.m.Y') }}"
+                       class="form-control">
+
+                <i class="icon calendar"></i>
+
+                <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <label class="" for="link_description">Beschreibung</label>
+
+            <div class="ui left labeled icon input attached-label">
+                <textarea name="description">{{ entity.description|default('') }}</textarea>
+                <div class="ui bottom attached label">Du kannst hier <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> benutzen.</div>
             </div>
         </div>
 
