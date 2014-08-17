@@ -116,7 +116,7 @@
             <label class="control-label required" for="link_category">Kategorie</label>
             <div class="ui left labeled input">
                 <div class="ui dropdown selection fluid">
-                    <input name="category" type="hidden" value="{{ entity.category|default('presse') }}">
+                    <input name="category" type="hidden" value="{{ entity.category|default('') }}">
                     <div class="default text">Bitte wähle eine Kategorie aus</div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
