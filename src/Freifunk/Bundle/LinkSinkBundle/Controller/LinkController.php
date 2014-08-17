@@ -5,6 +5,7 @@ namespace Freifunk\Bundle\LinkSinkBundle\Controller;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -189,20 +190,42 @@ class LinkController extends Controller
 
         $pubdate = $request->get('pubdate');
         $pubdate = new \DateTime($pubdate);
-        $entity->pubdate = $pubdate;
-        $entity->guid = $request->get('url');
-        $entity->description = $request->get('description');
-        $entity->title = $request->get('title');
-        $entity->url = $request->get('url');
-        $entity->enclosure = $request->get('enclosure');
-        $entity->category = $request->get('category');
+        $entity->setPubdate($pubdate);
+        $entity->setGuid($request->get('url'));
+        $entity->setDescription($request->get('description'));
+        $entity->setTitle($request->get('title'));
+        $entity->setUrl($request->get('url'));
+        $entity->setCategory($request->get('category'));
 
-        $entity->slug = \URLify::filter($entity->title, 255, 'de');
+        $entity->setSlug(\URLify::filter($entity->title, 255, 'de'));
+
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        if ($request->get('enclosureurl')) {
+            $repo = $em->getRepository('FreifunkLinkSinkBundle:Enclosure');
+            $results = $repo->findBy(array( 'id' => $request->get('enclosureid')));
+            if (count($results) > 0) {
+                $enclosure = $results[0];
+                $enclosure->setUrl($request->get('enclosureurl'));
+                $enclosure->setLength($request->get('enclosurelength'));
+                $enclosure->setType($request->get('enclosuretype'));
+                $em->persist($enclosure);
+                $em->flush();
+                $entity->setEnclosure($enclosure);
+            } else {
+                $enclosure = new Enclosure();
+                $enclosure->setUrl($request->get('enclosureurl'));
+                $enclosure->setLength($request->get('enclosurelength'));
+                $enclosure->setType($request->get('enclosuretype'));
+                $em->persist($enclosure);
+                $em->flush();
+                $entity->setEnclosure($enclosure);
+            }
+        }
 
         $tags = $request->get('tags');
         if (strlen($tags) > 0) {
             $tags = explode(',', $tags);
-            $em = $this->getDoctrine()->getManager();
             $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
             $entity->clearTags();
             foreach ($tags as $tag) {
@@ -221,7 +244,7 @@ class LinkController extends Controller
             }
             return $em;
         }
-        //return $em;
+        return $em;
     }
 
 

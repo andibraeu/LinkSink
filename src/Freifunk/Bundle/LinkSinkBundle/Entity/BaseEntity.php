@@ -34,14 +34,14 @@ abstract class BaseEntity {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255,options={"default" = ""})
      */
-    protected $slug = '';
+    private $slug = '';
 
     public function __isset($name) {
         if (property_exists($this, $name)) {
@@ -68,4 +68,37 @@ abstract class BaseEntity {
         }
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return BaseEntity
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }
