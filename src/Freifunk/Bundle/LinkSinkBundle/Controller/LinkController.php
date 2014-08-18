@@ -206,21 +206,26 @@ class LinkController extends Controller
             $results = $repo->findBy(array( 'id' => $request->get('enclosureid')));
             if (count($results) > 0) {
                 $enclosure = $results[0];
-                $enclosure->setUrl($request->get('enclosureurl'));
-                $enclosure->setLength($request->get('enclosurelength'));
-                $enclosure->setType($request->get('enclosuretype'));
-                $em->persist($enclosure);
-                $em->flush();
-                $entity->setEnclosure($enclosure);
             } else {
                 $enclosure = new Enclosure();
-                $enclosure->setUrl($request->get('enclosureurl'));
-                $enclosure->setLength($request->get('enclosurelength'));
-                $enclosure->setType($request->get('enclosuretype'));
-                $em->persist($enclosure);
-                $em->flush();
-                $entity->setEnclosure($enclosure);
             }
+            $info = $this->getUrlHeader($request->get('enclosureurl'));
+            $enclosure->setUrl($request->get('enclosureurl'));
+            if (! is_null($info['download_content_length'])) {
+                $enclosure->setLength($info['download_content_length']);
+            } else {
+                $enclosure->setLength($request->get('enclosurelength'));
+            }
+            if (! is_null($info['content_type'])) {
+                $enclosure->setType($info['content_type']);
+            } else {
+                $enclosure->setType($request->get('enclosuretype'));
+            }
+
+            $em->persist($enclosure);
+            $em->flush();
+            $entity->setEnclosure($enclosure);
+
         }
 
         $tags = $request->get('tags');
@@ -245,6 +250,24 @@ class LinkController extends Controller
             return $em;
         }
         return $em;
+    }
+
+
+    /**
+     * @param $url
+     * @return mixed
+     */
+    private function getUrlHeader($url) {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLINFO_CONTENT_TYPE, true);
+        curl_setopt($curl, CURLINFO_CONTENT_LENGTH_UPLOAD, true);
+        curl_setopt($curl, CURLOPT_NOBODY, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
+        $info = curl_getinfo($curl);
+        curl_close($curl);
+        return $info;
     }
 
 
