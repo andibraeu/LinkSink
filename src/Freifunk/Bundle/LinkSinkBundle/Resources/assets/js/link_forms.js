@@ -47,5 +47,5 @@ $('.ui.form')
         inline: true,
         on     : 'blur'
     });
-$('.ui.input.popup')
+$('.ui.input.hint')
 .popup();

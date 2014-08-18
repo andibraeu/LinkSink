@@ -3,7 +3,7 @@
         <div class="field">
             <label class="control-label required" for="link_title">Titel</label>
 
-            <div class="ui left labeled icon input popup" title="Titel des Beitrags">
+            <div class="ui left labeled icon input hint" data-content="Titel des Beitrags">
                 <input type="text"
                        id="link_title"
                        name="title"
@@ -22,7 +22,7 @@
         <div class="field">
             <label class="control-label required" for="link_url">URL</label>
 
-            <div class="ui left labeled icon input popup" title="URL zum Beitrag">
+            <div class="ui left labeled icon input hint" title="URL zum Beitrag">
                 <input type="text"
                        id="link_url"
                        name="url"
@@ -40,7 +40,7 @@
         <div class="field">
             <label class="control-label required" for="link_pubdate">Veröffentlichungsdatum</label>
 
-            <div class="ui left labeled icon input popup" title="Wann wurde der Beitrag veröffentlicht?">
+            <div class="ui left labeled icon input hint" title="Wann wurde der Beitrag veröffentlicht?">
                 <input type="datetime"
                        id="link_pubdate"
                        name="pubdate"
@@ -76,7 +76,7 @@
 
                 <label class="" for="link_enclosureurl">Medienlink</label>
 
-                <div class="ui left labeled icon input popup" title="Link zu einer Mediendatei (mp3, ogg, ...), die z.B. zu einem Podcast gehört. Länge und Medientyp werden beim Speichern automatisch ergänzt">
+                <div class="ui left labeled icon input hint" title="Link zu einer Mediendatei (mp3, ogg, ...), die z.B. zu einem Podcast gehört. Länge und Medientyp werden beim Speichern automatisch ergänzt">
                     <input type="text"
                            id="link_enclosureurl"
                            name="enclosureurl"
@@ -160,8 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui error message"></div>
-        <input type="submit" class="ui button"/>
+	<div class="ui blue submit button">Speichern</div>
     </div>
 
 </form>
