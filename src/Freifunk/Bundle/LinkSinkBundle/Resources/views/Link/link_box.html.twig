@@ -11,7 +11,7 @@
 
         <p class="pubdate ">
             <i class="circular icon calendar green inverted link" title="Veröffentlicht am"
-               data-content="veröffentlicht_am?"></i>{{ entity.pubdate.format('Y-m-d') }}
+               data-content="Veröffentlicht am"></i>{{ entity.pubdate.format('Y-m-d') }}
         </p>
 
 
@@ -19,20 +19,20 @@
             <ul class="tags">
                 {% for tag in entity.tags %}
                     <li class="tag"><a href="{{ path('tag_show',{'slug' : tag.slug }) }}"><i
-                                    class="circular icon tag green inverted link"></i>{{ tag.name }}</a></li>
+                                    class="circular icon tag green inverted link" data-content="Tags"></i>{{ tag.name }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}
 
         {% if entity.url|length > 0 %}
             <p class="url">
-                <a href="{{ entity.url }}"><i class="circular icon globe green inverted link"></i>{{ entity.url }}</a>
+                <a href="{{ entity.url }}" target="_blank"><i class="circular icon globe green inverted link" data-content="Link zum Beitrag"></i>Direkt zum Beitrag</a>
             </p>
         {% endif %}
 
         {%  if entity.enclosure is not null %}
             <p class="enclosure">
-                <a href="{{ entity.enclosure.url }}"><i class="circular icon music green inverted link"></i>{{ entity.enclosure.url }}</a>
+                <a href="{{ entity.enclosure.url }}" target="_blank"><i class="circular icon music green inverted link" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
             </p>
         {% endif %}
 

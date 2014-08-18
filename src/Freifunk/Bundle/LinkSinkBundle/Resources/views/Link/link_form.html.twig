@@ -1,9 +1,9 @@
-<form method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
+<form class="ui form" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
     <div class="ui form segment">
         <div class="field">
             <label class="control-label required" for="link_title">Titel</label>
 
-            <div class="ui left labeled icon input">
+            <div class="ui left labeled icon input popup" title="Titel des Beitrags">
                 <input type="text"
                        id="link_title"
                        name="title"
@@ -22,7 +22,7 @@
         <div class="field">
             <label class="control-label required" for="link_url">URL</label>
 
-            <div class="ui left labeled icon input">
+            <div class="ui left labeled icon input popup" title="URL zum Beitrag">
                 <input type="text"
                        id="link_url"
                        name="url"
@@ -40,7 +40,7 @@
         <div class="field">
             <label class="control-label required" for="link_pubdate">Veröffentlichungsdatum</label>
 
-            <div class="ui left labeled icon input">
+            <div class="ui left labeled icon input popup" title="Wann wurde der Beitrag veröffentlicht?">
                 <input type="datetime"
                        id="link_pubdate"
                        name="pubdate"
@@ -62,7 +62,7 @@
             <label class="" for="link_description">Beschreibung</label>
 
             <div class="ui left labeled icon input attached-label">
-                <textarea name="description">{{ entity.description|default('') }}</textarea>
+                <textarea id="link_description" name="description">{{ entity.description|default('') }}</textarea>
                 <div class="ui bottom attached label">Du kannst hier <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> benutzen.</div>
             </div>
         </div>
@@ -74,13 +74,15 @@
                        name="enclosureid"
                        value="{{ entity.enclosure.id|default('') }}">
 
-                <label class="" for="link_enclosure">Medienlink</label>
+                <label class="" for="link_enclosureurl">Medienlink</label>
 
-                <div class="ui left labeled icon input" title="This appears in the default location">
+                <div class="ui left labeled icon input popup" title="Link zu einer Mediendatei (mp3, ogg, ...), die z.B. zu einem Podcast gehört. Länge und Medientyp werden beim Speichern automatisch ergänzt">
                     <input type="text"
                            id="link_enclosureurl"
                            name="enclosureurl"
                            maxlength="255"
+                           type="url"
+                           pattern="https?://.+"
                            value="{{ entity.enclosure.url|default('') }}"
                            class="form-control">
                     <i class="icon globe"></i>
@@ -158,9 +160,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="ui blue submit button">Submit</div>
         <div class="ui error message"></div>
+        <input type="submit" class="ui button"/>
     </div>
 
 </form>
