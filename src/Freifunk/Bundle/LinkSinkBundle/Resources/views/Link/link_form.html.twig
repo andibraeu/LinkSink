@@ -76,7 +76,7 @@
 
                 <label class="" for="link_enclosure">Medienlink</label>
 
-                <div class="ui left labeled icon input">
+                <div class="ui left labeled icon input" title="This appears in the default location">
                     <input type="text"
                            id="link_enclosureurl"
                            name="enclosureurl"
@@ -95,7 +95,9 @@
                            id="link_enclosurelength"
                            name="enclosurelength"
                            maxlength="255"
+                           placeholder="Wird beim Speichern gesetzt"
                            value="{{ entity.enclosure.length|default('') }}"
+                           disabled
                            class="form-control">
                     <i class="icon file outline"></i>
 
@@ -109,8 +111,10 @@
                            id="link_enclosuretype"
                            name="enclosuretype"
                            maxlength="255"
+                           placeholder="Wird beim Speichern gesetzt"
                            pattern=".*\/.*"
                            value="{{ entity.enclosure.type|default('') }}"
+                           disabled
                            class="form-control">
                     <i class="icon inbox"></i>
 
@@ -155,7 +159,8 @@
             </div>
         </div>
 
-        <input type="submit" class="ui button blue" value="Speichern"/>
+        <div class="ui blue submit button">Submit</div>
+        <div class="ui error message"></div>
     </div>
 
 </form>
