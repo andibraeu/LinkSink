@@ -87,7 +87,7 @@ class Link extends BaseEntity implements Feedable {
 
     /**
      * @ORM\OneToOne(targetEntity="Enclosure")
-     * @ORM\JoinColumn(name="enclosure_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="enclosure_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $enclosure;
 

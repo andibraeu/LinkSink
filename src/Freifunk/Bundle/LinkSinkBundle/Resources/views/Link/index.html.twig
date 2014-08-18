@@ -17,6 +17,15 @@
 {% endblock %}
 
 {% block body -%}
+    {% if app.request.query.get('deletedtitle') !='' %}
+    <div class="ui one column page grid">
+        <div class="column">
+            <div id="mission-statement" class="ui message ">
+                Link <strong>{{ app.request.query.get('deletedtitle') }}</strong> gelöscht.
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div class="ui one column page grid title">
         <div class="ui column">
             <h1>

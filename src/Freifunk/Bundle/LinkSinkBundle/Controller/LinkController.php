@@ -142,6 +142,42 @@ class LinkController extends Controller
     }
 
     /**
+     * Deletes an existing link from database
+     *
+     * @Route("links/{slug}/delete", name="_delete")
+     * @Method("GET")
+     * @Template()
+     */
+    public function deleteAction($slug)
+    {
+       /** @var EntityManager $em */
+       $em = $this->getDoctrine()->getManager();
+
+       /** @var EntityRepository $repo */
+       $repo = $em->getRepository('FreifunkLinkSinkBundle:Link');
+
+       /** @var Link $entity */
+       $entity = $repo->findOneBy(['slug' => $slug]);
+
+       if (!$entity) {
+           throw $this->createNotFoundException('Unable to find Link entity.');
+       }
+       if ($entity->isValid()) {
+           $title = $entity->getTitle();
+           $em = $this->getDoctrine()->getManager();
+           $em->remove($entity);
+           $em->flush();
+
+           return $this->redirect($this->generateUrl('', array('deletedtitle' => $title)));
+       }
+
+       return array(
+           'entity'      => $entity,
+
+       );
+    }
+
+    /**
      * Edits an existing Link entity.
      *
      * @Route("/links/{slug}", name="_update")
