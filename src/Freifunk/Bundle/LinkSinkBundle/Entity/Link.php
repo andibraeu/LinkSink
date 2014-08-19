@@ -139,9 +139,11 @@ class Link extends BaseEntity implements Feedable {
 
        if ($this->getEnclosure()) {
             $enclosure = $this->getEnclosure();
-            $item->addEnclosure(
-                new FeedItemEnclosure($enclosure->getUrl(), $enclosure->getType(), $enclosure->getLength())
-            );
+            if ($enclosure->getLength() > 0) {
+                $item->addEnclosure(
+                    new FeedItemEnclosure($enclosure->getUrl(), $enclosure->getType(), $enclosure->getLength())
+                );
+            }
         }
 
         /*
