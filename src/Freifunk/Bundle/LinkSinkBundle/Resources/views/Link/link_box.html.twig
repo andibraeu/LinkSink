@@ -9,7 +9,7 @@
                         class="circular icon edit green inverted link"></i>Bearbeiten</a>
         </p>
         
-	<p class="edit">
+	<p class="delete">
             <a href="{{ path('_delete', {'slug' : entity.slug }) }}"><i
                         class="circular icon trash green inverted link"></i>Löschen</a>
         </p>
@@ -36,9 +36,11 @@
         {% endif %}
 
         {%  if entity.enclosure is not null %}
-            <p class="enclosure">
-                <a href="{{ entity.enclosure.url }}" target="_blank"><i class="circular icon music green inverted link" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
-            </p>
+            {% if entity.enclosure.length > 0 %}
+                <p class="enclosure">
+                    <a href="{{ entity.enclosure.url }}" target="_blank"><i class="circular icon music green inverted link" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
+                </p>
+            {% endif %}
         {% endif %}
 
         <div class="ui clearing divider"></div>

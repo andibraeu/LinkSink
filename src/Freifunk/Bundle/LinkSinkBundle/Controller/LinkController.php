@@ -254,8 +254,10 @@ class LinkController extends Controller
             }
             if (! is_null($info['content_type'])) {
                 $enclosure->setType($info['content_type']);
-            } else {
+            } else if (! is_null($request->get('enclosuretype'))) {
                 $enclosure->setType($request->get('enclosuretype'));
+            } else {
+                $enclosure->setType('application/octet-stream');
             }
 
             $em->persist($enclosure);
