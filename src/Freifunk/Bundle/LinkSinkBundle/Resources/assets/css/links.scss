@@ -1,4 +1,4 @@
-.event.box {
+.link.box {
   h2 {
     padding: 0.5rem;
     a,a:hover,a:visited {
@@ -6,7 +6,7 @@
     }
   }
 
-  .pubdate,.location,.url,.edit {
+  .pubdate,.enclosureurl,.url,.edit {
     display: inline;
     margin: 0;
     margin-right: 0.5rem;
