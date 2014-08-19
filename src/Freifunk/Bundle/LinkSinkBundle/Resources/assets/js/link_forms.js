@@ -4,6 +4,8 @@ $(document).ready(function(){
         .dropdown('set value',$('.ui.dropdown.selection input[type=hidden]').val())
     ;
 });
+//create rule that allows empty or url values
+$.fn.form.settings.rules['notemptyandurl'] = function (value) {var urlRegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ; if (value == '') {return true;} else {return urlRegExp.test(value);}};
 $('.ui.form')
     .form({
         url: {
@@ -11,7 +13,7 @@ $('.ui.form')
             rules: [
                 {
                     type   : 'url',
-                    prompt : 'Bitte gib einen validen Link an (URL)'
+                    prompt : 'Bitte gib einen gültigen Link an (URL)'
                 }
             ]
         },
@@ -41,6 +43,15 @@ $('.ui.form')
                     prompt: 'Bitte gib eine Kategorie an'
                 }
             ]
+        },
+        enclosureurl: {
+            identifier: 'enclosureurl',
+            rules: [
+                {
+                    type: 'notemptyandurl',
+                    prompt: 'Bitte gib einen gültigen Link zu einer Mediendatei an'
+                }
+            ]
         }
     },
     {
@@ -49,3 +60,5 @@ $('.ui.form')
     });
 $('.ui.input.hint')
 .popup();
+
+
