@@ -92,10 +92,8 @@ class Link extends BaseEntity implements Feedable {
     protected $enclosure;
 
     /**
-     *
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="links")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
 
