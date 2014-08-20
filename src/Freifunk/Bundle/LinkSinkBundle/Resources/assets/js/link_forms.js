@@ -60,5 +60,3 @@ $('.ui.form')
     });
 $('.ui.input.hint')
 .popup();
-
-
