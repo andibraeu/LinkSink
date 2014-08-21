@@ -1,0 +1,20 @@
+<form class="ui form" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('category_update',{'slug':entity.slug}) }}{% else %}{{ path('category_create') }}{% endif %}">
+    <div class="ui form segment">
+        <div class="field">
+            <label class="" for="category_name">Name</label>
+            <div class="ui left labeled input">
+                <input type="text"
+                       id="category_name"
+                       name="name"
+                       value="{{ entity.getName()|default('') }}"
+                       required="required"
+                       maxlength="255"
+                       class="form-control">
+                <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui blue submit button">Speichern</div>
+    </div>
+</form>

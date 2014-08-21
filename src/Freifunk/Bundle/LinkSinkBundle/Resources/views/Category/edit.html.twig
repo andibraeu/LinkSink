@@ -1,7 +1,33 @@
-{% extends "::base.html.twig" %}
+{% extends 'FreifunkLinkSinkBundle::layout.html.twig' %}
 
-{% block title %}FreifunkLinkSinkBundle:Category:edit{% endblock %}
+{% block css %}
+    {% stylesheets filter="compass"
+    "@FreifunkLinkSinkBundle/Resources/assets/css/links.scss"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Category:edit page</h1>
+{% block javascripts %}
+    {% javascripts
+    "@FreifunkLinkSinkBundle/Resources/assets/js/link_forms.js"
+    "@FreifunkLinkSinkBundle/Resources/assets/js/links.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body -%}
+    <div class="ui one column page grid">
+        <div class="ui column">
+            <h1>Kategorie bearbeiten</h1>
+        </div>
+    </div>
+
+    <div class="ui one column page grid">
+        <div class="ui column">
+            {{ include('FreifunkLinkSinkBundle:Category:category_form.html.twig',{'entity':entity}) }}
+        </div>
+    </div>
+
 {% endblock %}
