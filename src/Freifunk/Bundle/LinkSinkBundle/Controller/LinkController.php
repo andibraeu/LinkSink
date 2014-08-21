@@ -142,7 +142,7 @@ class LinkController extends Controller
     }
 
     /**
-     * Deletes an existing link from database
+     * Provides a form to delete an existing link from database
      *
      * @Route("links/{slug}/delete", name="_delete")
      * @Method("GET")
@@ -162,6 +162,34 @@ class LinkController extends Controller
        if (!$entity) {
            throw $this->createNotFoundException('Unable to find Link entity.');
        }
+
+       return array(
+           'entity'      => $entity,
+
+       );
+    }
+
+    /**
+     * Deletes an existing link from database
+     *
+     * @Route("links/{slug}/deleteconfirmed", name="_deleteconfirmed")
+     * @Method("POST")
+     * @Template()
+     */
+    public function deleteConfirmedAction(Request $request, $slug)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Link');
+
+        /** @var Link $entity */
+        $entity = $repo->findOneBy(['slug' => $slug]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Link entity.');
+        }
        if ($entity->isValid()) {
            $title = $entity->getTitle();
            $em = $this->getDoctrine()->getManager();
@@ -171,10 +199,10 @@ class LinkController extends Controller
            return $this->redirect($this->generateUrl('', array('deletedtitle' => $title)));
        }
 
-       return array(
-           'entity'      => $entity,
+        return array(
+            'entity'      => $entity,
 
-       );
+        );
     }
 
     /**
