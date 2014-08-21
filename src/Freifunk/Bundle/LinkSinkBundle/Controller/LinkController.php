@@ -279,9 +279,9 @@ class LinkController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
-        $results = $repo->findOneBy(array( 'slug' => $request->get('category')));
+        $result = $repo->findOneBy(array( 'slug' => $request->get('category')));
 
-        $entity->setCategory($results[0]);
+        $entity->setCategory($result);
 
         $entity->setSlug(\URLify::filter($entity->title, 255, 'de'));
 

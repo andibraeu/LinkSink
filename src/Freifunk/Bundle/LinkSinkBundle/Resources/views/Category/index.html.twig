@@ -24,6 +24,15 @@
             </div>
         </div>
     {% endif %}
+    {% if app.request.query.get('haslinksname') !='' %}
+        <div class="ui one column page yellow grid">
+            <div class="column">
+                <div id="mission-statement" class="ui message ">
+                    Kategorie <strong>{{ app.request.query.get('haslinksname') }}</strong> ist noch mit Links verbunden.
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <div class="ui one column page grid title">
         <div class="ui column">
             <h1 class="ui header">

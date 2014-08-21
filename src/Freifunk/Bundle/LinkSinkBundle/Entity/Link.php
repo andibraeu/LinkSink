@@ -126,7 +126,7 @@ class Link extends BaseEntity implements Feedable {
                 'slug' => $this->getSlug(),
             ])
             ->setTitle($this->getTitle())
-            ->addCategory(new FeedItemCategory($this->getCategory()))
+            ->addCategory(new FeedItemCategory($this->getCategory()->getName()))
             ->setDescription($this->getDescription())
             ->setLink($this->getUrl())
             ->setGuid(new FeedItemGuid($this->getGuid()))
@@ -339,7 +339,7 @@ class Link extends BaseEntity implements Feedable {
      * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags
      * @return Link
      */
-    public function addTag(\Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags)
+    public function addTag(Tag $tags)
     {
         $this->tags[] = $tags;
 
@@ -349,9 +349,9 @@ class Link extends BaseEntity implements Feedable {
     /**
      * Remove tags
      *
-     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags
+     * @param Tag $tags
      */
-    public function removeTag(\Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags)
+    public function removeTag(Tag $tags)
     {
         $this->tags->removeElement($tags);
     }
@@ -397,7 +397,7 @@ class Link extends BaseEntity implements Feedable {
      * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Category $category
      * @return Link
      */
-    public function setCategory(\Freifunk\Bundle\LinkSinkBundle\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -407,7 +407,7 @@ class Link extends BaseEntity implements Feedable {
     /**
      * Get category
      *
-     * @return \Freifunk\Bundle\LinkSinkBundle\Entity\Category 
+     * @return Category
      */
     public function getCategory()
     {

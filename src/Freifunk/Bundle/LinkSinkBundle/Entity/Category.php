@@ -20,7 +20,7 @@ class Category extends BaseEntity
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Link", mappedBy="categoryObj")
+     * @ORM\OneToMany(targetEntity="Link", mappedBy="category")
      */
     protected $links;
 
