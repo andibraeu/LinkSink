@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CategoryController
@@ -18,6 +19,73 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CategoryController extends Controller
 {
+
+    /**
+     * @Route("/{category}.{format}", defaults={"year" = "", "tag" = "", "format"="html"})
+     * @Route("/{category}/{year}.{format}", defaults={"tag" = "", "format"="html"})
+     * @Route("/{category}/{year}/{tag}.{format}", defaults={"format"="html"})
+     * @Method("GET")
+     * @Template("FreifunkLinkSinkBundle:Link:index.html.twig")
+     */
+    public function showAction($category, $year, $tag, $format)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+
+        /** @var Category $category */
+        $myCategory = $repo->findOneBy(['slug' => $category]);
+        
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        if (!$myCategory) {
+            throw $this->createNotFoundException('Unable to find category entity.');
+        }
+
+        /** @var Tag $location */
+        $myTag = $repo->findOneBy(['slug' => $tag]);
+
+        if ($tag && !$myTag) {
+            throw $this->createNotFoundException('Unable to find tag entity.');
+        }
+
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder();
+        $qb->select(array('e'))
+            ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->join('e.category', 'c', 'WITH', $qb->expr()->in('c.id', $myCategory->id));
+	if ($myTag) {
+            $qb->join('e.tags', 't', 'WITH', $qb->expr()->in('t.id', $myTag->id));
+	}
+	if ($year) {
+	    $qb->where('e.pubdate > :year');
+	    $qb->setParameter('year', $year);
+	}
+        $qb->orderBy('e.pubdate', 'desc');
+        $entities = $qb->getQuery()->execute();
+
+        if ($format == 'rss') {
+            $rss = $this->get('argentum_feed.factory')
+                ->createFeed('news')
+                ->addFeedableItems($entities)
+                ->render();
+
+            $response = new Response($rss);
+            $response->headers->set('Content-Type', 'text/xml');
+            return $response;
+        } else {
+            return array(
+                'entities' => $entities,
+                'tag' => $myTag,
+		'category' => $category,
+		'year' => $year,
+            );
+        }
+
+    }
+
     /**
      * @Route("/", name="category_show")
      * @Method("GET")

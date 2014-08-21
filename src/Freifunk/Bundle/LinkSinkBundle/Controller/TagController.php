@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
-use Jsvrcek\ICS\Model\Description\Geo;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -15,12 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
 use Freifunk\Bundle\LinkSinkBundle\Form\LinkType;
 use Symfony\Component\HttpFoundation\Response;
-use Jsvrcek\ICS\Model\Calendar;
-use Jsvrcek\ICS\Model\CalendarEvent;
 
-use Jsvrcek\ICS\Utility\Formatter;
-use Jsvrcek\ICS\CalendarStream;
-use Jsvrcek\ICS\CalendarExport;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
