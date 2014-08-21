@@ -6,7 +6,23 @@ $(document).ready(function(){
 });
 //create rule that allows empty or url values
 $.fn.form.settings.rules['notemptyandurl'] = function (value) {var urlRegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ; if (value == '') {return true;} else {return urlRegExp.test(value);}};
-$('.ui.form')
+$('.ui.form.category')
+    .form({
+        name: {
+            identifier  : 'name',
+            rules: [
+                {
+                    type   : 'empty',
+                    prompt : 'Bitte gib einen Kategorienamen an'
+                }
+            ]
+        }
+    },
+    {
+        inline: true,
+        on     : 'blur'
+    });
+$('.ui.form.link')
     .form({
         url: {
             identifier  : 'url',

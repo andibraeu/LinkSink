@@ -1,4 +1,4 @@
-<form class="ui form" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
+<form class="ui form link" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
     <div class="ui form segment">
         <div class="field">
             <label class="control-label required" for="link_title">Titel</label>

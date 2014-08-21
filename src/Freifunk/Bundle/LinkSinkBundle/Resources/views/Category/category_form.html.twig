@@ -1,4 +1,4 @@
-<form class="ui form" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('category_update',{'slug':entity.slug}) }}{% else %}{{ path('category_create') }}{% endif %}">
+<form class="ui form category" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('category_update',{'slug':entity.slug}) }}{% else %}{{ path('category_create') }}{% endif %}">
     <div class="ui form segment">
         <div class="field">
             <label class="" for="category_name">Name</label>
