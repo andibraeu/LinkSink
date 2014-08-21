@@ -149,6 +149,10 @@ class CategoryController extends Controller
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
 
+        if ($entity->getLinks()->count() > 0 ) {
+            return $this->redirect($this->generateUrl('category_show', array('haslinksname' => $entity->getName())));
+        }
+
         return array(
             'entity'      => $entity,
 
