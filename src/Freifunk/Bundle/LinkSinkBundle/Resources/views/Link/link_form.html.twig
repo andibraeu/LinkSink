@@ -130,10 +130,9 @@
                         <div class="default text">Bitte wähle eine Kategorie</div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <div class="item" data-value="presse">Presse</div>
-                            <div class="item" data-value="radio">Radio</div>
-                            <div class="item" data-value="tv">Fernsehen</div>
-                            <div class="item" data-value="podcast">Podcast</div>
+                            {% for category in categories %}
+                                <div class="item" data-value="{{ category.getSlug() }}">{{ category.getName }}</div>
+                            {% endfor %}
                         </div>
                         <div class="ui corner label">
                             <i class="icon asterisk"></i>

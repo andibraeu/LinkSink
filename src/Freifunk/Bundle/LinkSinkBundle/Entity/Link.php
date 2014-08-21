@@ -8,15 +8,12 @@
 
 namespace Freifunk\Bundle\LinkSinkBundle\Entity;
 
-use Argentum\FeedBundle\Feed\FeedItemCategory;
-use Argentum\FeedBundle\Feed\FeedItemGuid;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\EntityManager;
-
 use Argentum\FeedBundle\Feed\Feedable;
 use Argentum\FeedBundle\Feed\FeedItem;
+use Argentum\FeedBundle\Feed\FeedItemCategory;
 use Argentum\FeedBundle\Feed\FeedItemEnclosure;
-use Argentum\FeedBundle\Feed\FeedItemSource;
+use Argentum\FeedBundle\Feed\FeedItemGuid;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Description of Link
@@ -278,28 +275,7 @@ class Link extends BaseEntity implements Feedable {
         return $this->url;
     }
 
-    /**
-     * Set category
-     *
-     * @param string $category
-     * @return Link
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
+    
 
     /**
      * Get id
@@ -413,5 +389,28 @@ class Link extends BaseEntity implements Feedable {
     public function getEnclosureId()
     {
         return $this->enclosure_id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Category $category
+     * @return Link
+     */
+    public function setCategory(\Freifunk\Bundle\LinkSinkBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Freifunk\Bundle\LinkSinkBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

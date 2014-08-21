@@ -4,15 +4,15 @@ namespace Freifunk\Bundle\LinkSinkBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Category;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
-use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -55,8 +55,17 @@ class LinkController extends Controller
     public function newAction() {
         $entity = new Link();
 
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var EntityRepository $catRepo */
+        $catRepo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+
+        /** @var Category[] $categories */
+        $categories = $catRepo->findAll();
+
         return array(
             'entity' => $entity,
+            'categories' => $categories,
         );
     }
 
@@ -132,12 +141,19 @@ class LinkController extends Controller
         /** @var Link $entity */
         $entity = $repo->findOneBy(['slug' => $slug]);
 
+        /** @var EntityRepository $catRepo */
+        $catRepo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+
+        /** @var Category[] $categories */
+        $categories = $catRepo->findAll();
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Link entity.');
         }
 
         return array(
             'entity'      => $entity,
+            'categories'  => $categories,
         );
     }
 
@@ -259,12 +275,17 @@ class LinkController extends Controller
         $entity->setDescription($request->get('description'));
         $entity->setTitle($request->get('title'));
         $entity->setUrl($request->get('url'));
-        $entity->setCategory($request->get('category'));
-
-        $entity->setSlug(\URLify::filter($entity->title, 255, 'de'));
 
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+        $results = $repo->findOneBy(array( 'slug' => $request->get('category')));
+
+        $entity->setCategory($results[0]);
+
+        $entity->setSlug(\URLify::filter($entity->title, 255, 'de'));
+
+
         if ($request->get('enclosureurl')) {
             $repo = $em->getRepository('FreifunkLinkSinkBundle:Enclosure');
             $results = $repo->findBy(array( 'id' => $request->get('enclosureid')));
