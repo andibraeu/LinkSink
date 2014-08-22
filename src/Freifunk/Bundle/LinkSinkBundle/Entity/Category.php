@@ -3,6 +3,7 @@
 namespace Freifunk\Bundle\LinkSinkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Category
@@ -55,10 +56,10 @@ class Category extends BaseEntity
     /**
      * Add links
      *
-     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Link $links
+     * @param Link $links
      * @return Category
      */
-    public function addLink(\Freifunk\Bundle\LinkSinkBundle\Entity\Link $links)
+    public function addLink(Link $links)
     {
         $this->links[] = $links;
 
@@ -68,9 +69,9 @@ class Category extends BaseEntity
     /**
      * Remove links
      *
-     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Link $links
+     * @param Link $links
      */
-    public function removeLink(\Freifunk\Bundle\LinkSinkBundle\Entity\Link $links)
+    public function removeLink(Link $links)
     {
         $this->links->removeElement($links);
     }
@@ -78,7 +79,7 @@ class Category extends BaseEntity
     /**
      * Get links
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getLinks()
     {
