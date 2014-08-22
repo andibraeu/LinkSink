@@ -23,13 +23,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @property \DateTime $pubdate
+ * @property integer $pubyear
  * @property string $guid
  * @property string $description
  * @property string $title
  * @property string $url
  * @property Enclosure $enclosure
  * @property string $category
- * @property array $tags
  *
  * @ORM\Table(name="links")
  * @ORM\Entity
@@ -44,7 +44,14 @@ class Link extends BaseEntity implements Feedable {
      * @ORM\Column(name="pubdate", type="datetimetz")
      */
     protected $pubdate;
-    
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pubyear", type="integer", nullable=true)
+     */
+    private $pubyear;
+
     /** 
      *
      * @var string
@@ -313,10 +320,10 @@ class Link extends BaseEntity implements Feedable {
     /**
      * Set enclosure
      *
-     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure $enclosure
+     * @param Enclosure $enclosure
      * @return Link
      */
-    public function setEnclosure(\Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure $enclosure = null)
+    public function setEnclosure(Enclosure $enclosure = null)
     {
         $this->enclosure = $enclosure;
 
@@ -336,7 +343,7 @@ class Link extends BaseEntity implements Feedable {
     /**
      * Add tags
      *
-     * @param \Freifunk\Bundle\LinkSinkBundle\Entity\Tag $tags
+     * @param Tag $tags
      * @return Link
      */
     public function addTag(Tag $tags)
@@ -412,5 +419,28 @@ class Link extends BaseEntity implements Feedable {
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set pubyear
+     *
+     * @param integer $pubyear
+     * @return Link
+     */
+    public function setPubyear($pubyear)
+    {
+        $this->pubyear = $pubyear;
+
+        return $this;
+    }
+
+    /**
+     * Get pubyear
+     *
+     * @return integer 
+     */
+    public function getPubyear()
+    {
+        return $this->pubyear;
     }
 }

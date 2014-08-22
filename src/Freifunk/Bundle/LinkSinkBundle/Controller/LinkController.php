@@ -271,6 +271,7 @@ class LinkController extends Controller
         $pubdate = $request->get('pubdate');
         $pubdate = new \DateTime($pubdate);
         $entity->setPubdate($pubdate);
+        $entity->setPubyear($pubdate->format("Y"));
         $entity->setGuid($request->get('url'));
         $entity->setDescription($request->get('description'));
         $entity->setTitle($request->get('title'));
