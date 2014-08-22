@@ -9,6 +9,9 @@ use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
 use Doctrine\ORM\QueryBuilder;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,9 +24,10 @@ class CategoryController extends Controller
 {
 
     /**
-     * @Route("/{category}.{format}", defaults={"year" = "", "tag" = "", "format"="html"})
-     * @Route("/{category}/{year}.{format}", defaults={"tag" = "", "format"="html"})
-     * @Route("/{category}/{year}/{tag}.{format}", defaults={"format"="html"})
+     * @Route("/{category}.{format}", defaults={"year" = "", "tag" = "", "format"="html"}, name="category_filter")
+     * @Route("/{category}/{year}.{format}", requirements={"year" = "\d{4}"}, defaults={"tag" = "", "format"="html"}, name="category_filter_year")
+     * @Route("/{category}/{year}/{tag}.{format}", requirements={"year" = "\d{4}"}, defaults={"format"="html"}, name="category_filter_year_tag")
+     * @Route("/{category}/{tag}.{format}", requirements={"tag" = "[A-Za-z0-9\-]+"}, defaults={"year" = "", "format"="html"}, name="category_filter_tag")
      * @Method("GET")
      * @Template("FreifunkLinkSinkBundle:Link:index.html.twig")
      */
@@ -60,7 +64,7 @@ class CategoryController extends Controller
             $qb->join('e.tags', 't', 'WITH', $qb->expr()->in('t.id', $myTag->id));
 	}
 	if ($year) {
-	    $qb->where('e.pubdate > :year');
+	    $qb->where('e.pubyear = :year');
 	    $qb->setParameter('year', $year);
 	}
         $qb->orderBy('e.pubdate', 'desc');
@@ -79,8 +83,8 @@ class CategoryController extends Controller
             return array(
                 'entities' => $entities,
                 'tag' => $myTag,
-		'category' => $category,
-		'year' => $year,
+		        'category' => $myCategory,
+		        'year' => $year,
             );
         }
 
