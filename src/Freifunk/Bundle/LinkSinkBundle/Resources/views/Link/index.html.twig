@@ -28,11 +28,14 @@
     </div>
     {% endif %}
     <div class="ui one column page grid title">
+        {% if app.request.attributes.get('_route') %}
         <div class="ui column">
             <div id="searchresult" class="ui message">
-                {% if entities|length == 1 %}1 gefundener Link{% else %}{{ entities|length }} gefundene Links{% endif %}
+                <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}.rss"><i class="icon rss"></i>Link zum Feed</a>
+                 ({% if entities|length == 1 %}1 gefundener Link{% else %}{{ entities|length }} gefundene Links: {% endif %})
             </div>
         </div>
+        {% endif %}
         <div class="ui column page grid">
             {{ include('FreifunkLinkSinkBundle:Link:filter_form.html.twig') }}
         </div>
