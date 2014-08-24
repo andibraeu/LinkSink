@@ -37,7 +37,7 @@ class LinkController extends Controller
         $qb = $em->createQueryBuilder();
         $qb ->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
-            ->orderBy('e.pubdate');
+            ->orderBy('e.pubdate', 'desc');
         $entities = $qb->getQuery()->execute();
 
         return array(
