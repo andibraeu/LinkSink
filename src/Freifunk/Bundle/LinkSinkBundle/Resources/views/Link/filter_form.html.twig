@@ -4,7 +4,7 @@
             <div class="four wide field">
                 <label class="" for="link_category">Kategorie</label>
                 <div class="ui left labeled input">
-                    <div class="ui dropdown selection fluid">
+                    <div class="ui dropdown selection fluid" id="category">
                         <input name="category" type="hidden" value="{{ category.getSlug()|default('') }}">
                         <div class="default text">Kategorie</div>
                         <i class="dropdown icon"></i>
@@ -20,7 +20,7 @@
             <div class="four wide field">
                 <label class="" for="link_year">Jahr</label>
                 <div class="ui left labeled input">
-                    <div class="ui dropdown selection fluid">
+                    <div class="ui dropdown selection fluid" id="year">
                         <input name="year" type="hidden" value="{{ year|default('') }}">
                         <div class="default text">Jahr</div>
                         <i class="dropdown icon"></i>
@@ -37,7 +37,7 @@
                 <label class="" for="link_tag">Tag</label>
                 <div class="ui left labeled input">
                     <div class="ui dropdown selection fluid">
-                        <input name="category" type="hidden" value="{{ tag.getSlug()|default('') }}">
+                        <input name="tag" type="hidden" value="{{ tag.getSlug()|default('') }}">
                         <div class="default text">Tag</div>
                         <i class="dropdown icon"></i>
                         <div class="menu">

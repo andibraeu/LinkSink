@@ -34,7 +34,25 @@ class LinkController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+
+        /** @var Category $allCategories */
+        $allCategories = $repo->findAll();
+
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        /** @var Tag $allTags */
+        $allTags = $repo->findAll();
+
         $qb = $em->createQueryBuilder();
+        $qb->select(array('e.pubyear'))
+            ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->groupBy('e.pubyear');
+        $years = $qb->getQuery()->execute();
+        $qb = $em->createQueryBuilder();
+
         $qb ->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
             ->orderBy('e.pubdate', 'desc');
@@ -42,7 +60,49 @@ class LinkController extends Controller
 
         return array(
             'entities' => $entities,
+            'categories' => $allCategories,
+            'tags' => $allTags,
+            'years' => $years,
         );
+    }
+
+    /**
+     * filters links
+     *
+     * @Route("/filter", name="_filter")
+     * @Method("POST")
+     * @Template()
+     */
+    public function filterAction(Request $request) {
+        if ($request->get('category') && $request->get('tag') && $request->get('year')) {
+            return $this->redirect($this->generateUrl('category_filter_year_tag', array(
+                'category' => $request->get('category'),
+                'tag' => $request->get('tag'),
+                'year' => $request->get('year'),
+            )));
+        } elseif ($request->get('category') && $request->get('year')) {
+            return $this->redirect($this->generateUrl('category_filter_year', array(
+                'category' => $request->get('category'),
+                'year' => $request->get('year'),
+            )));
+        } elseif ($request->get('category') && $request->get('tag')) {
+            return $this->redirect($this->generateUrl('category_filter_tag', array(
+                'category' => $request->get('category'),
+                'tag' => $request->get('tag'),
+            )));
+        } elseif ($request->get('category')) {
+            return $this->redirect($this->generateUrl('category_filter', array(
+                'category' => $request->get('category'),
+            )));
+        } elseif ($request->get('tag')) {
+            return $this->redirect($this->generateUrl('tag_show', array(
+                'slug' => $request->get('tag'),
+            )));
+        }
+        else {
+            return $this->redirect($this->generateUrl(''));
+        }
+
     }
 
     /**

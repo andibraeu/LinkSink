@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.ui.dropdown.selection')
         .dropdown()
-        .dropdown('set value',$('.ui.dropdown.selection input[type=hidden]').val())
+        //.dropdown('set value',$('.ui.dropdown.selection input[type=hidden]').val())
     ;
 });
 //create rule that allows empty or url values

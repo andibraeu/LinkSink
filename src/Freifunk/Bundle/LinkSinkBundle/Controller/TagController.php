@@ -37,7 +37,16 @@ class TagController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+
+        /** @var Category $allCategories */
+        $allCategories = $repo->findAll();
+
+        /** @var EntityRepository $repo */
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        /** @var Tag $allTags */
+        $allTags = $repo->findAll();
 
         /** @var Tag $location */
         $tag = $repo->findOneBy(['slug' => $slug]);
@@ -48,6 +57,12 @@ class TagController extends Controller
 
         /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder();
+        $qb->select(array('e.pubyear'))
+            ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->groupBy('e.pubyear');
+        $years = $qb->getQuery()->execute();
+        $qb = $em->createQueryBuilder();
+
         $qb->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
             ->join('e.tags', 't', 'WITH', $qb->expr()->in('t.id', $tag->id))
@@ -67,6 +82,9 @@ class TagController extends Controller
             return array(
                 'entities' => $entities,
                 'tag' => $tag,
+                'categories' => $allCategories,
+                'tags' => $allTags,
+                'years' => $years,
             );
         }
     }
