@@ -47,6 +47,9 @@ class CategoryController extends Controller
         
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
 
+        /** @var Tag $allTags */
+        $allTags = $repo->findAll();
+
         if (!$myCategory) {
             throw $this->createNotFoundException('Unable to find category entity.');
         }
@@ -60,6 +63,13 @@ class CategoryController extends Controller
 
         /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder();
+        $qb->select(array('e.pubyear'))
+            ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->groupBy('e.pubyear');
+        $years = $qb->getQuery()->execute();
+        $qb = $em->createQueryBuilder();
+
+
         $qb->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
             ->join('e.category', 'c', 'WITH', $qb->expr()->in('c.id', $myCategory->id));
@@ -86,9 +96,11 @@ class CategoryController extends Controller
             return array(
                 'entities' => $entities,
                 'tag' => $myTag,
+                'tags' => $allTags,
 		        'category' => $myCategory,
                 'categories' => $allCategories,
 		        'year' => $year,
+                'years' => $years,
             );
         }
 

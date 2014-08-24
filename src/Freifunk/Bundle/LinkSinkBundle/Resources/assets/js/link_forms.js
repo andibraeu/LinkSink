@@ -22,6 +22,11 @@ $('.ui.form.category')
         inline: true,
         on     : 'blur'
     });
+$('.ui.form.filter')
+    .form({
+        inline: true,
+        on     : 'blur'
+    });
 $('.ui.form.link')
     .form({
         url: {
