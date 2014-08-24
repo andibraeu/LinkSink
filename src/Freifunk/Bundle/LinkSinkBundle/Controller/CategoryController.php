@@ -24,10 +24,10 @@ class CategoryController extends Controller
 {
 
     /**
-     * @Route("/{category}.{format}", defaults={"year" = "", "tag" = "", "format"="html"}, name="category_filter")
-     * @Route("/{category}/{year}.{format}", requirements={"year" = "\d{4}"}, defaults={"tag" = "", "format"="html"}, name="category_filter_year")
-     * @Route("/{category}/{year}/{tag}.{format}", requirements={"year" = "\d{4}"}, defaults={"format"="html"}, name="category_filter_year_tag")
-     * @Route("/{category}/{tag}.{format}", requirements={"tag" = "[A-Za-z0-9\-]+"}, defaults={"year" = "", "format"="html"}, name="category_filter_tag")
+     * @Route("/s/{category}.{format}", defaults={"year" = "", "tag" = "", "format"="html"}, name="category_filter")
+     * @Route("/s/{category}/{year}.{format}", requirements={"year" = "\d{4}"}, defaults={"tag" = "", "format"="html"}, name="category_filter_year")
+     * @Route("/s/{category}/{year}/{tag}.{format}", requirements={"year" = "\d{4}"}, defaults={"format"="html"}, name="category_filter_year_tag")
+     * @Route("/s/{category}/{tag}.{format}", requirements={"tag" = "[A-Za-z0-9\-]+"}, defaults={"year" = "", "format"="html"}, name="category_filter_tag")
      * @Method("GET")
      * @Template("FreifunkLinkSinkBundle:Link:index.html.twig")
      */
@@ -41,6 +41,9 @@ class CategoryController extends Controller
 
         /** @var Category $category */
         $myCategory = $repo->findOneBy(['slug' => $category]);
+
+        /** @var Category $allCategories */
+        $allCategories = $repo->findAll();
         
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
 
@@ -84,6 +87,7 @@ class CategoryController extends Controller
                 'entities' => $entities,
                 'tag' => $myTag,
 		        'category' => $myCategory,
+                'categories' => $allCategories,
 		        'year' => $year,
             );
         }
