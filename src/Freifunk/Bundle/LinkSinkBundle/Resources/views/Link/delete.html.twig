@@ -22,7 +22,7 @@
 {% block body -%}
     <div class="ui one column page grid">
         <div class="ui column">
-        <form class="ui form" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_deleteconfirmed',{'slug':entity.slug}) }}{% else %}{{ path('_show',{'slug':entity.slug}) }}{% endif %}">
+        <form class="ui form delete" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_deleteconfirmed',{'slug':entity.slug}) }}{% else %}{{ path('_show',{'slug':entity.slug}) }}{% endif %}">
             <div class="ui form segment">
                 <div class="field">
                     <div class="ui message red">

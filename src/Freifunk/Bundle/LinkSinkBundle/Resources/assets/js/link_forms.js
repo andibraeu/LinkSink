@@ -27,6 +27,11 @@ $('.ui.form.filter')
         inline: true,
         on     : 'blur'
     });
+$('.ui.form.delete')
+    .form({
+        inline: true,
+        on     : 'blur'
+    });
 $('.ui.form.link')
     .form({
         url: {
