@@ -411,6 +411,7 @@ class LinkController extends Controller
         curl_setopt($curl, CURLINFO_CONTENT_TYPE, true);
         curl_setopt($curl, CURLINFO_CONTENT_LENGTH_UPLOAD, true);
         curl_setopt($curl, CURLOPT_NOBODY, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_exec($curl);
         $info = curl_getinfo($curl);
