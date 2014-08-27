@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author andi
  * 
  * @ORM\Table(name="tags")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Freifunk\Bundle\LinkSinkBundle\Entity\TagRepository")
  */
 class Tag extends BaseEntity {
 

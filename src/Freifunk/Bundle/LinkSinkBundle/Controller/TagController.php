@@ -6,6 +6,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
+use Freifunk\Bundle\LinkSinkBundle\Entity\Category;
+use Freifunk\Bundle\LinkSinkBundle\Entity\TagRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,7 +48,7 @@ class TagController extends Controller
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
 
         /** @var Tag $allTags */
-        $allTags = $repo->findAll();
+        $allTags = $repo->findAllOrderedBySlug();
 
         /** @var Tag $location */
         $tag = $repo->findOneBy(['slug' => $slug]);

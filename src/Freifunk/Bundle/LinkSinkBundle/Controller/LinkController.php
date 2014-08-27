@@ -8,6 +8,7 @@ use Freifunk\Bundle\LinkSinkBundle\Entity\Category;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
+use Freifunk\Bundle\LinkSinkBundle\Entity\TagRepository;
 use Doctrine\ORM\QueryBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,7 +46,7 @@ class LinkController extends Controller
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
 
         /** @var Tag $allTags */
-        $allTags = $repo->findAll();
+        $allTags = $repo->findAllOrderedBySlug();
 
         $qb = $em->createQueryBuilder();
         $qb->select(array('e.pubyear'))

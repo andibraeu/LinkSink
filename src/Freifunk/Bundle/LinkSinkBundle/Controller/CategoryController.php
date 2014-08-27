@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
 
         /** @var Tag $allTags */
-        $allTags = $repo->findAll();
+        $allTags = $repo->findAllOrderedBySlug();
 
         if (!$myCategory) {
             throw $this->createNotFoundException('Unable to find category entity.');
