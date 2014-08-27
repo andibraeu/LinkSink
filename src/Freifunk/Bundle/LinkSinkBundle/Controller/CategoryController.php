@@ -65,6 +65,7 @@ class CategoryController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select(array('e.pubyear'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->orderBy('e.pubyear', 'desc')
             ->groupBy('e.pubyear');
         $years = $qb->getQuery()->execute();
         $qb = $em->createQueryBuilder();

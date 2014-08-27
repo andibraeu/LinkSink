@@ -8,6 +8,7 @@ use Freifunk\Bundle\LinkSinkBundle\Entity\Category;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Enclosure;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Tag;
+use Doctrine\ORM\QueryBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -49,6 +50,7 @@ class LinkController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select(array('e.pubyear'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->orderBy('e.pubyear', 'desc')
             ->groupBy('e.pubyear');
         $years = $qb->getQuery()->execute();
         $qb = $em->createQueryBuilder();
@@ -388,8 +390,8 @@ class LinkController extends Controller
                     $entity->addTag($results[0]);
                 } else {
                     $tag_obj = new Tag();
-                    $tag_obj->name = $tag;
-                    $tag_obj->slug = \URLify::filter($tag_obj->name, 255, 'de');
+                    $tag_obj->setName($tag);
+                    $tag_obj->slug = \URLify::filter($tag_obj->getName(), 255, 'de');
                     $em->persist($tag_obj);
                     $em->flush();
                     $entity->addTag($tag_obj);
