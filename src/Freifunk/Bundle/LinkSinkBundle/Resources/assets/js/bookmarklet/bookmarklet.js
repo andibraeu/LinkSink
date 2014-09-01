@@ -4,7 +4,7 @@
 (function () {
   
   // config
-  var apiURL = "http://rss.freifunk.net/links/submit"
+  var apiURL = "http://rss.freifunk.net/links/submit";
   // 
   
   // jQuery should have been loaded by the wrapper
