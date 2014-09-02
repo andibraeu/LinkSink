@@ -1,0 +1,7 @@
+services:
+    freifunk_bundle.linksinkbundle.twigcontentextension:
+        class: Freifunk\Bundle\LinkSinkBundle\TwigContentExtension
+        calls:
+            - [ getContent, [ @? ] ]
+        tags:
+            - { name: twig.extension }
