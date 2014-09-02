@@ -22,7 +22,7 @@
   
   // check for valid date, insert current time if not
   if (isNaN(link.date.getDate())) {
-    link.date = new Date();
+    link.date = Math.round(new Date().getTime() / 1000);
   }
   // get UNIX date
   link.date = link.date.getTime();

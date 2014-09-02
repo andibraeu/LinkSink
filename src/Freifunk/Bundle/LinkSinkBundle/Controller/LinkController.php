@@ -112,21 +112,21 @@ class LinkController extends Controller
      * Displays a form to add a new link
      *
      * @Route("/links/neu", name="_new")
-     * @Route("/links/neu/{url}/{title}/{date}")
      * @Method("GET")
      * @Template()
      */
-    public function newAction($url, $title, $date) {
+    public function newAction(Request $request) {
         $entity = new Link();
 
-        if ($url != null) {
-            $entity->setUrl($url);
+        if ($request->get('url') != null) {
+            $entity->setUrl($request->get('url'));
         }
-        if ($date != null) {
-            $entity->setPubdate($date);
+        if ($request->get('date') != null) {
+            $pubdate = new \DateTime("@".$request->get('date'));
+            $entity->setPubdate($pubdate);
         }
-        if ($title != null) {
-            $entity->setTitle($title);
+        if ($request->get('title') != null) {
+            $entity->setTitle($request->get('title'));
         }
 
         $em = $this->getDoctrine()->getManager();
