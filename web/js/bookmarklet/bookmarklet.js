@@ -4,7 +4,7 @@
 (function () {
   
   // config
-  var apiURL = "http://rss.freifunk.net/links/submit";
+  var apiURL = "http://rss.freifunk.net/links/neu";
   // 
   
   // jQuery should have been loaded by the wrapper
@@ -32,9 +32,9 @@
   
   // build API call
   var submitURL = apiURL+
-    '?url='+encodeURIComponent(link.url)+
-    '&title='+encodeURIComponent(link.title)+
-    '&date='+link.date;
+    '/'+encodeURIComponent(link.url)+
+    '/'+encodeURIComponent(link.title)+
+    '/'+link.date;
     
   // redirect to the submit form
   window.location = submitURL;
