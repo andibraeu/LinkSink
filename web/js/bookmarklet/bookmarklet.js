@@ -25,7 +25,7 @@
     link.date = Math.round(new Date().getTime() / 1000);
   }
   // get UNIX date
-  link.date = link.date.getTime();
+  link.date = Math.round(link.date.getTime() / 1000);
   
   // debug
   // console.log(link);
