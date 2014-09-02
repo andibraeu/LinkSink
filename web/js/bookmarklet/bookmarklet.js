@@ -25,19 +25,19 @@
     link.date = Math.round(new Date().getTime() / 1000);
   }
   // get UNIX date
-  link.date = Math.round(link.date.getTime() / 1000);
+  //link.date = link.date.getTime();
   
   // debug
   // console.log(link);
   
   // build API call
   var submitURL = apiURL+
-    '/'+encodeURIComponent(link.url)+
-    '/'+encodeURIComponent(link.title)+
-    '/'+link.date;
+    '?url='+encodeURIComponent(link.url)+
+    '/&title='+encodeURIComponent(link.title)+
+    '/&date='+link.date;
     
   // redirect to the submit form
-  window.location = submitURL;
+  window.open(submitURL, '_blank');
   
 }());
 
