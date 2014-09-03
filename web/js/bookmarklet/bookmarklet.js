@@ -33,8 +33,8 @@
   // build API call
   var submitURL = apiURL+
     '?url='+encodeURIComponent(link.url)+
-    '/&title='+encodeURIComponent(link.title)+
-    '/&date='+link.date;
+    '&title='+encodeURIComponent(link.title)+
+    '&date='+link.date;
     
   // redirect to the submit form
   window.open(submitURL, '_blank');
