@@ -37,7 +37,7 @@
     '&date='+link.date;
     
   // redirect to the submit form
-  window.open(submitURL, '_blank');
+  window.location = submitURL;
   
 }());
 
