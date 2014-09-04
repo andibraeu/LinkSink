@@ -44,7 +44,7 @@
   var link = {
     title: myTitle || "(Unknown Title)",
     url: myUrl || null,
-    description: myDescription || null,
+    description: myDescription || "",
     date: new Date($('meta[name="date"]').attr('content'))
   };
   
