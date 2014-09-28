@@ -219,7 +219,7 @@ class CategoryController extends Controller
     /**
      * Provides a form to delete an existing link from database
      *
-     * @Route("kategorie/{slug}/delete", name="category_delete")
+     * @Route("/{slug}/delete", name="category_delete")
      * @Method("GET")
      * @Template()
      */
@@ -251,7 +251,7 @@ class CategoryController extends Controller
     /**
      * Deletes an existing link from database
      *
-     * @Route("kategorie/{slug}/deleteconfirmed", name="category_deleteconfirmed")
+     * @Route("/{slug}/deleteconfirmed", name="category_deleteconfirmed")
      * @Method("POST")
      * @Template()
      */
