@@ -128,6 +128,9 @@ class LinkController extends Controller
         if ($request->get('title') != null) {
             $entity->setTitle($request->get('title'));
         }
+        if ($request->get('description') != null) {
+            $entity->setDescription($request->get('description'));
+        }
 
         $em = $this->getDoctrine()->getManager();
 

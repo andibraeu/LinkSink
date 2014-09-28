@@ -15,7 +15,7 @@
                 f(c).remove();
             }
         };
-        a.documentElement.childNodes[0].appendChild(c);
+        a.getElementsByTagName('head')[0].appendChild(c);
     }
 })(window, document, "1.11.1", function($, L) {
   
