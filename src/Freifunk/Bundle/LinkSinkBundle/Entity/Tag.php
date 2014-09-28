@@ -9,6 +9,8 @@
 namespace Freifunk\Bundle\LinkSinkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+
 
 /**
  * Description of Tag
@@ -48,6 +50,44 @@ class Tag extends BaseEntity {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Link", mappedBy="tags")
+     */
+    protected $links;
+
+    /**
+     * Add links
+     *
+     * @param Link $links
+     * @return Category
+     */
+    public function addLink(Link $links)
+    {
+        $this->links[] = $links;
+
+        return $this;
+    }
+
+    /**
+     * Remove links
+     *
+     * @param Link $links
+     */
+    public function removeLink(Link $links)
+    {
+        $this->links->removeElement($links);
+    }
+
+    /**
+     * Get links
+     *
+     * @return Collection
+     */
+    public function getLinks()
+    {
+        return $this->links;
     }
 
 

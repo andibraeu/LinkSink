@@ -91,4 +91,89 @@ class TagController extends Controller
             );
         }
     }
+
+    /**
+     * @Route("/", name="tag_list")
+     * @Method("GET")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+        $entities = $repo->findAll();
+        return [
+            'entities' => $entities,
+        ];
+    }
+
+    /**
+     * Provides a form to delete an existing link from database
+     *
+     * @Route("/{slug}/delete", name="tag_delete")
+     * @Method("GET")
+     * @Template()
+     */
+    public function deleteAction($slug)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        /** @var Category $entity */
+        $entity = $repo->findOneBy(['slug' => $slug]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Tag entity.');
+        }
+
+        if ($entity->getLinks()->count() > 0 ) {
+            return $this->redirect($this->generateUrl('tag_list', array('haslinksname' => $entity->getName())));
+        }
+
+        return array(
+            'entity'      => $entity,
+
+        );
+    }
+
+    /**
+     * Deletes an existing link from database
+     *
+     * @Route("/{slug}/deleteconfirmed", name="tag_deleteconfirmed")
+     * @Method("POST")
+     * @Template()
+     */
+    public function deleteConfirmedAction(Request $request, $slug)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        /** @var Category $entity */
+        $entity = $repo->findOneBy(['slug' => $slug]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Tag entity.');
+        }
+        if ($entity->isValid()) {
+            $name = $entity->getName();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('tag_show', array('deletedname' => $name)));
+        }
+
+        return array(
+            'entity'      => $entity,
+
+        );
+    }
 }

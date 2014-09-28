@@ -105,7 +105,7 @@ class Link extends BaseEntity implements Feedable {
     /**
      * @var array
      *
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="links")
      * @ORM\JoinTable(name="links2tags",
      * joinColumns={@ORM\JoinColumn(name="links_id", referencedColumnName="id")},
      * inverseJoinColumns={@ORM\JoinColumn(name="tags_id", referencedColumnName="id")}
