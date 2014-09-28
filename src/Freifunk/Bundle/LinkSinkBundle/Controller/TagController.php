@@ -168,7 +168,7 @@ class TagController extends Controller
             $em->remove($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('tag_show', array('deletedname' => $name)));
+            return $this->redirect($this->generateUrl('tag_list', array('deletedname' => $name)));
         }
 
         return array(

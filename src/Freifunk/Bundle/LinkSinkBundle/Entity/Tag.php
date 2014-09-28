@@ -90,5 +90,8 @@ class Tag extends BaseEntity {
         return $this->links;
     }
 
+    public function isValid() {
+        return true;
+    }
 
 }
