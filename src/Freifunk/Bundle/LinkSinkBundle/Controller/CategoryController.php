@@ -81,6 +81,7 @@ class CategoryController extends Controller
 	    $qb->where('e.pubyear = :year');
 	    $qb->setParameter('year', $year);
 	}
+        $qb->andWhere('e.deleted <> 1');
         $qb->orderBy('e.pubdate', 'desc');
         $entities = $qb->getQuery()->execute();
 
