@@ -37,7 +37,8 @@
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "jbroadway/urlify" : "~1.0",
-        "argentum/feed-bundle": "1.0.x-dev"
+        "argentum/feed-bundle": "1.0.x-dev",
+        "gregwar/captcha-bundle": "2.0.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
