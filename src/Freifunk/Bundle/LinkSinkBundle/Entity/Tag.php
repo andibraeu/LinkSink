@@ -94,4 +94,12 @@ class Tag extends BaseEntity {
         return true;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->links = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 }

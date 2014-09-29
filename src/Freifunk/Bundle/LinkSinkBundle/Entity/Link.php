@@ -30,6 +30,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @property string $url
  * @property Enclosure $enclosure
  * @property string $category
+ * @property boolean $deleted
+ * @property \DateTime $deletedAt
  *
  * @ORM\Table(name="links")
  * @ORM\Entity
@@ -113,6 +115,23 @@ class Link extends BaseEntity implements Feedable {
      */
     protected $tags = [];
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="deleted", nullable=true)
+     */
+    protected $deleted;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deleted_at", nullable=true, type="datetimetz")
+     */
+    protected $deletedAt;
+
+    /**
+     * @return bool
+     */
     public function isValid() {
         return true;
     }
@@ -442,5 +461,51 @@ class Link extends BaseEntity implements Feedable {
     public function getPubyear()
     {
         return $this->pubyear;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param string $deleted
+     * @return Link
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return string 
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Link
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }
