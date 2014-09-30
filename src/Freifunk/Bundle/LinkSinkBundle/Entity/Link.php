@@ -118,7 +118,7 @@ class Link extends BaseEntity implements Feedable {
     /**
      * @var bool
      *
-     * @ORM\Column(name="deleted", nullable=true)
+     * @ORM\Column(name="deleted", nullable=true, type="boolean")
      */
     protected $deleted;
 
@@ -466,7 +466,7 @@ class Link extends BaseEntity implements Feedable {
     /**
      * Set deleted
      *
-     * @param string $deleted
+     * @param boolean $deleted
      * @return Link
      */
     public function setDeleted($deleted)

@@ -78,10 +78,10 @@ class CategoryController extends Controller
             $qb->join('e.tags', 't', 'WITH', $qb->expr()->in('t.id', $myTag->id));
 	}
 	if ($year) {
-	    $qb->where('e.pubyear = :year');
+	    $qb->andWhere('e.pubyear = :year');
 	    $qb->setParameter('year', $year);
 	}
-        $qb->andWhere('e.deleted <> 1');
+        $qb->andWhere('e.deleted != 1');
         $qb->orderBy('e.pubdate', 'desc');
         $entities = $qb->getQuery()->execute();
 

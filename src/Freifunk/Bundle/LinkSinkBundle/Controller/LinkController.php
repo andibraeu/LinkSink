@@ -285,7 +285,7 @@ class LinkController extends Controller
         }
        if ($entity->isValid()) {
            $title = $entity->getTitle();
-           $entity->setDeleted("1");
+           $entity->setDeleted(true);
            $entity->setDeletedAt(new \DateTime());
            $em = $this->getDoctrine()->getManager();
            $em->persist($entity);
