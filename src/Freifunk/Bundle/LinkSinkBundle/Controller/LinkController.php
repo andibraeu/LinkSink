@@ -58,6 +58,7 @@ class LinkController extends Controller
 
         $qb ->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
+            ->where('e.deleted is null')
             ->orderBy('e.pubdate', 'desc');
         $entities = $qb->getQuery()->execute();
 

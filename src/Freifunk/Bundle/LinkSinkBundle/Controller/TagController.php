@@ -69,6 +69,7 @@ class TagController extends Controller
         $qb->select(array('e'))
             ->from('FreifunkLinkSinkBundle:Link', 'e')
             ->join('e.tags', 't', 'WITH', $qb->expr()->in('t.id', $tag->id))
+            ->where('e.deleted is null')
             ->orderBy('e.pubdate', 'desc');
         $entities = $qb->getQuery()->execute();
 
