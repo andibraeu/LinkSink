@@ -1,6 +1,6 @@
 <form class="ui form link" method="post" action="{% if entity.id|default(0) > 0 %}{{ path('_update',{'slug':entity.slug}) }}{% else %}{{ path('_create') }}{% endif %}">
     <div class="ui form segment">
-        <div class="field">
+        <div class="field wis">
             <label class="control-label required" for="link_title">Titel</label>
 
             <div class="ui left labeled icon input hint" data-content="Titel des Beitrags">
@@ -18,8 +18,7 @@
             </div>
         </div>
 
-
-        <div class="field">
+        <div class="field wis">
             <label class="control-label required" for="link_url">URL</label>
 
             <div class="ui left labeled icon input hint" title="URL zum Beitrag">
@@ -37,7 +36,7 @@
             </div>
         </div>
 
-        <div class="field">
+        <div class="field wis">
             <label class="control-label required" for="link_pubdate">Veröffentlichungsdatum</label>
 
             <div class="ui left labeled icon input hint" title="Wann wurde der Beitrag veröffentlicht?">
@@ -58,7 +57,7 @@
         </div>
 
 
-        <div class="field">
+        <div class="field wis">
             <label class="" for="link_description">Beschreibung</label>
 
             <div class="ui left labeled icon input attached-label">
@@ -154,6 +153,23 @@
                            class="form-control">
                     <i class="icon tag"></i>
                     <div class="ui bottom attached label">Du kannst hier kommasepariert <a href="https://en.wikipedia.org/wiki/Tag_%28metadata%29">Tags</a> angeben.</div>
+                </div>
+            </div>
+            <div class="field oos">
+                <label class="control-label required" for="link_origin">Origin</label>
+
+                <?php //spam protection! ?>
+                <div class="ui left labeled icon input hint" title="Origin URL">
+                    <input type="text"
+                           name="origin"
+                           id="link_origin"
+                           maxlength="255"
+                           value="{{ entity.origin|default('') }}"
+                           class="form-control">
+                    <i class="icon globe"></i>
+                    <div class="ui corner label">
+                        <i class="icon asterisk"></i>
+                    </div>
                 </div>
             </div>
         </div>
