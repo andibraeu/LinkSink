@@ -158,9 +158,8 @@ class LinkController extends Controller
     {
         $entity = new Link();
 
-        $em = $this->saveLink($request, $entity);
-
         if ($entity->isValid() && (! $request->get('origin'))) {
+            $em = $this->saveLink($request, $entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -324,15 +323,15 @@ class LinkController extends Controller
             throw $this->createNotFoundException('Unable to find Link entity.');
         }
 
-        $em = $this->saveLink($request, $entity);
-
-
-        if ($entity->isValid()) {
+        if ($entity->isValid() && (! $request->get('origin'))) {
+            $em = $this->saveLink($request, $entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('_show', array('slug' => $entity->slug)));
+        } else {
+            return $this->redirect($this->generateUrl(''));
         }
 
         return array(
