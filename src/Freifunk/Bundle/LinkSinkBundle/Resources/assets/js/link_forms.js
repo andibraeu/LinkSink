@@ -82,7 +82,8 @@ $('.ui.form.link')
     },
     {
         inline: true,
-        on     : 'blur'
+        on     : 'blur',
+        keyboardShortcuts : false
     });
 $('.ui.input.hint')
 .popup();
