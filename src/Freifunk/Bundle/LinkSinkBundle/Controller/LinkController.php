@@ -166,7 +166,7 @@ class LinkController extends Controller
     {
         $entity = new Link();
 
-        if ($entity->isValid() && (! $request->get('origin'))) {
+        if ($entity->isValid() && (! $request->get('ls_origin'))) {
             $em = $this->saveLink($request, $entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -176,10 +176,6 @@ class LinkController extends Controller
         } else {
             return $this->redirect($this->generateUrl(''));
         }
-
-        return array(
-            'entity' => $entity,
-        );
     }
 
     /**
@@ -338,7 +334,7 @@ class LinkController extends Controller
             throw $this->createNotFoundException('Unable to find Link entity.');
         }
 
-        if ($entity->isValid() && (! $request->get('origin'))) {
+        if ($entity->isValid() && (! $request->get('ls_origin'))) {
             $em = $this->saveLink($request, $entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -348,11 +344,6 @@ class LinkController extends Controller
         } else {
             return $this->redirect($this->generateUrl(''));
         }
-
-        return array(
-            'entity'      => $entity,
-
-        );
     }
 
     /**
@@ -363,44 +354,44 @@ class LinkController extends Controller
     public function saveLink(Request $request, Link $entity)
     {
 
-        $pubdate = $request->get('pubdate');
+        $pubdate = $request->get('ls_pubdate');
         $pubdate = new \DateTime($pubdate);
         $entity->setPubdate($pubdate);
         $entity->setPubyear($pubdate->format("Y"));
-        $entity->setGuid($request->get('url'));
-        $entity->setDescription($request->get('description'));
-        $entity->setTitle($request->get('title'));
-        $entity->setUrl($request->get('url'));
+        $entity->setGuid($request->get('ls_url'));
+        $entity->setDescription($request->get('ls_description'));
+        $entity->setTitle($request->get('ls_title'));
+        $entity->setUrl($request->get('ls_url'));
 
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
-        $result = $repo->findOneBy(array( 'slug' => $request->get('category')));
+        $result = $repo->findOneBy(array( 'slug' => $request->get('ls_category')));
 
         $entity->setCategory($result);
 
         $entity->setSlug(\URLify::filter($entity->title, 255, 'de'));
 
 
-        if ($request->get('enclosureurl')) {
+        if ($request->get('ls_enclosureurl')) {
             $repo = $em->getRepository('FreifunkLinkSinkBundle:Enclosure');
-            $results = $repo->findBy(array( 'id' => $request->get('enclosureid')));
+            $results = $repo->findBy(array( 'id' => $request->get('ls_enclosureid')));
             if (count($results) > 0) {
                 $enclosure = $results[0];
             } else {
                 $enclosure = new Enclosure();
             }
-            $info = $this->getUrlHeader($request->get('enclosureurl'));
-            $enclosure->setUrl($request->get('enclosureurl'));
+            $info = $this->getUrlHeader($request->get('ls_enclosureurl'));
+            $enclosure->setUrl($request->get('ls_enclosureurl'));
             if (! is_null($info['download_content_length'])) {
                 $enclosure->setLength($info['download_content_length']);
             } else {
-                $enclosure->setLength($request->get('enclosurelength'));
+                $enclosure->setLength($request->get('ls_enclosurelength'));
             }
             if (! is_null($info['content_type'])) {
                 $enclosure->setType($info['content_type']);
-            } else if (! is_null($request->get('enclosuretype'))) {
-                $enclosure->setType($request->get('enclosuretype'));
+            } else if (! is_null($request->get('ls_enclosuretype'))) {
+                $enclosure->setType($request->get('ls_enclosuretype'));
             } else {
                 $enclosure->setType('application/octet-stream');
             }
@@ -411,7 +402,7 @@ class LinkController extends Controller
 
         }
 
-        $tags = $request->get('tags');
+        $tags = $request->get('ls_tags');
         if (strlen($tags) > 0) {
             $tags = explode(',', $tags);
             $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');

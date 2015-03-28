@@ -35,7 +35,7 @@ $('.ui.form.delete')
 $('.ui.form.link')
     .form({
         url: {
-            identifier  : 'url',
+            identifier  : 'ls_url',
             rules: [
                 {
                     type   : 'url',
@@ -44,7 +44,7 @@ $('.ui.form.link')
             ]
         },
         title: {
-            identifier: 'title',
+            identifier: 'ls_title',
             rules: [
                 {
                     type: 'empty',
@@ -53,7 +53,7 @@ $('.ui.form.link')
             ]
         },
         pubdate: {
-            identifier: 'pubdate',
+            identifier: 'ls_pubdate',
             rules: [
                 {
                     type: 'empty',
@@ -62,7 +62,7 @@ $('.ui.form.link')
             ]
         },
         category: {
-            identifier: 'category',
+            identifier: 'ls_category',
             rules: [
                 {
                     type: 'empty',
@@ -71,7 +71,7 @@ $('.ui.form.link')
             ]
         },
         enclosureurl: {
-            identifier: 'enclosureurl',
+            identifier: 'ls_enclosureurl',
             rules: [
                 {
                     type: 'notemptyandurl',

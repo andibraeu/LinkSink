@@ -6,7 +6,7 @@
             <div class="ui left labeled icon input hint" data-content="Titel des Beitrags">
                 <input type="text"
                        id="link_title"
-                       name="title"
+                       name="ls_title"
                        required="required"
                        maxlength="255"
                        value="{{ entity.title|default('') }}"
@@ -24,7 +24,7 @@
             <div class="ui left labeled icon input hint" title="URL zum Beitrag">
                 <input type="text"
                        id="link_url"
-                       name="url"
+                       name="ls_url"
                        required="required"
                        maxlength="255"
                        value="{{ entity.url|default('') }}"
@@ -42,7 +42,7 @@
             <div class="ui left labeled icon input hint" title="Wann wurde der Beitrag veröffentlicht?">
                 <input type="datetime"
                        id="link_pubdate"
-                       name="pubdate"
+                       name="ls_pubdate"
                        required="required"
                        value="{{ entity.pubdate.format('Y-m-d')|default('') }}"
                        placeholder="{{ "now"|date('d.m.Y') }}"
@@ -61,7 +61,7 @@
             <label class="" for="link_description">Beschreibung</label>
 
             <div class="ui left labeled icon input attached-label">
-                <textarea id="link_description" name="description">{{ entity.description|default('') }}</textarea>
+                <textarea id="link_description" name="ls_description">{{ entity.description|default('') }}</textarea>
                 <div class="ui bottom attached label">Du kannst hier <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> benutzen.</div>
             </div>
         </div>
@@ -70,7 +70,7 @@
             <div class="eight wide field">
                 <input type="hidden"
                        id="link_enclosureid"
-                       name="enclosureid"
+                       name="ls_enclosureid"
                        value="{{ entity.enclosure.id|default('') }}">
 
                 <label class="" for="link_enclosureurl">Medienlink</label>
@@ -78,7 +78,7 @@
                 <div class="ui left labeled icon input hint" title="Link zu einer Mediendatei (mp3, ogg, ...), die z.B. zu einem Podcast gehört. Länge und Medientyp werden beim Speichern automatisch ergänzt">
                     <input type="text"
                            id="link_enclosureurl"
-                           name="enclosureurl"
+                           name="ls_enclosureurl"
                            maxlength="255"
                            value="{{ entity.enclosure.url|default('') }}"
                            class="form-control">
@@ -92,7 +92,7 @@
                 <div class="ui left labeled icon input">
                     <input type="text"
                            id="link_enclosurelength"
-                           name="enclosurelength"
+                           name="ls_enclosurelength"
                            maxlength="255"
                            placeholder="Wird beim Speichern gesetzt"
                            value="{{ entity.enclosure.length|default('') }}"
@@ -108,7 +108,7 @@
                 <div class="ui left labeled icon input">
                     <input type="text"
                            id="link_enclosuretype"
-                           name="enclosuretype"
+                           name="ls_enclosuretype"
                            maxlength="255"
                            placeholder="Wird beim Speichern gesetzt"
                            pattern=".*\/.*"
@@ -125,7 +125,7 @@
                 <label class="control-label required" for="link_category">Kategorie</label>
                 <div class="ui left labeled input">
                     <div class="ui dropdown selection fluid">
-                        <input name="category" type="hidden" value="{{ entity.category.getSlug()|default('') }}">
+                        <input name="ls_category" type="hidden" value="{{ entity.category.getSlug()|default('') }}">
                         <div class="default text">Bitte wähle eine Kategorie</div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
@@ -148,7 +148,7 @@
                 <div class="ui left labeled icon input">
                     <input type="text"
                            id="link_tags"
-                           name="tags"
+                           name="ls_tags"
                            value="{{ entity.getTagsAsText() }}"
                            class="form-control">
                     <i class="icon tag"></i>
@@ -190,7 +190,7 @@
                 <label class="control-label required" for="link_origin">Origin</label>
                 <div class="ui left labeled icon input hint" title="Origin URL (Screenreader: bitte leer lassen)">
                     <input type="text"
-                           name="origin"
+                           name="ls_origin"
                            id="link_origin"
                            maxlength="255"
                            value="{{ entity.origin|default('') }}"
