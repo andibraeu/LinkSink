@@ -36,6 +36,11 @@ form .ui.form {
       margin-bottom: 3.2rem;
     }
   }
+  .selectize-input {
+    line-height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.3125em;
+  }
 }
 
 #map {

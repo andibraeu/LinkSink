@@ -12,6 +12,7 @@
         "css/custom.scss"
     %}
     <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+    <link rel="stylesheet" href="{{ asset('css/selectize.css') }}"/>
     {% endstylesheets %}
     {% block css %}
 
@@ -32,12 +33,13 @@
         </div>
     </div>
 </div>
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/selectize.min.js') }}"></script>
 
 <div id="main" class="segment">
     {% block body %}{% endblock %}
 </div>
-<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-<script src="{{ asset('js/jquery.js') }}"></script>
 <!-- Include all JavaScripts, compiled by Assetic -->
 <script src="{{ asset('js/semantic.js') }}"></script>
 {% block javascripts %}{% endblock %}

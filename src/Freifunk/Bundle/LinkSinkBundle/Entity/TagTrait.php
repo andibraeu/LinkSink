@@ -57,5 +57,4 @@ trait TagTrait {
             return '';
         }
     }
-
 }

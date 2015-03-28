@@ -141,9 +141,17 @@ class LinkController extends Controller
         /** @var Category[] $categories */
         $categories = $catRepo->findAll();
 
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        /** @var Tag $allTags */
+        $allTags = $repo->findAllOrderedBySlug();
+
+
         return array(
             'entity' => $entity,
             'categories' => $categories,
+            'tags' => $allTags,
         );
     }
 
@@ -225,6 +233,12 @@ class LinkController extends Controller
         /** @var Category[] $categories */
         $categories = $catRepo->findAll();
 
+        /** @var EntityRepository $repo */
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Tag');
+
+        /** @var Tag $allTags */
+        $allTags = $repo->findAllOrderedBySlug();
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Link entity.');
         }
@@ -232,6 +246,7 @@ class LinkController extends Controller
         return array(
             'entity'      => $entity,
             'categories'  => $categories,
+            'tags'        => $allTags,
         );
     }
 

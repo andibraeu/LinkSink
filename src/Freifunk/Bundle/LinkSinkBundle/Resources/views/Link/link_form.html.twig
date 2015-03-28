@@ -145,20 +145,49 @@
             <div class="twelve wide field">
                 <label class="" for="link_tags">Tags</label>
 
-                <div class="ui left icon input attached-label">
+                <div class="ui left labeled icon input">
                     <input type="text"
                            id="link_tags"
                            name="tags"
                            value="{{ entity.getTagsAsText() }}"
                            class="form-control">
                     <i class="icon tag"></i>
-                    <div class="ui bottom attached label">Du kannst hier kommasepariert <a href="https://en.wikipedia.org/wiki/Tag_%28metadata%29">Tags</a> angeben.</div>
+                    <script>
+                        $('#link_tags').selectize({
+                            persist: false,
+                            plugins: ['remove_button','restore_on_backspace'],
+                            maxItems: null,
+                            maxOptions: 5,
+                            valueField: 'tag',
+                            labelField: 'tag',
+                            searchField: ['tag'],
+                            options: [
+                                {% for tagItem in tags %}
+                                { tag : '{{ tagItem.getName }}'},
+                                {% endfor %}
+                                { tag : '' }
+                            ],
+                            render: {
+                                item: function(item, escape) {
+                                    return '<div>' +
+                                            (item.tag ? '<span class="name">' + escape(item.tag) + '</span>' : '') +
+                                            '</div>';
+                                },
+                                option: function(item, escape) {
+                                    return '<div>' +
+                                            '<span class="label">' + escape(item.tag) + '</span>' +
+                                            '</div>';
+                                }
+                            },
+                            create: function(input) {
+                                return {tag : input};
+                            }
+                        });
+                    </script>
                 </div>
             </div>
-
             <div class="field oos">
                 <label class="control-label required" for="link_origin">Origin</label>
-
                 <div class="ui left labeled icon input hint" title="Origin URL (Screenreader: bitte leer lassen)">
                     <input type="text"
                            name="origin"
