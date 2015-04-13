@@ -166,7 +166,12 @@ class LinkController extends Controller
     {
         $entity = new Link();
 
-        if ($entity->isValid() && (! $request->get('ls_origin'))) {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+        $category = $repo->findOneBy(array( 'slug' => $request->get('ls_category')));
+
+        if ($entity->isValid() && (! $request->get('ls_origin')) && (! is_null($category))) {
             $em = $this->saveLink($request, $entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -334,7 +339,10 @@ class LinkController extends Controller
             throw $this->createNotFoundException('Unable to find Link entity.');
         }
 
-        if ($entity->isValid() && (! $request->get('ls_origin'))) {
+        $repo = $em->getRepository('FreifunkLinkSinkBundle:Category');
+        $category = $repo->findOneBy(array( 'slug' => $request->get('ls_category')));
+
+        if ($entity->isValid() && (! $request->get('ls_origin')) && (! is_null($category))) {
             $em = $this->saveLink($request, $entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
