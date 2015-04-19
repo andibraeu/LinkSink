@@ -27,7 +27,13 @@
         </div>
     </div>
     {% endif %}
-    <div class="ui one column page grid title">
+    <div class="ui basic segment">
+        <h1 class="ui primary block dividing header">
+            Links
+        </h1>
+    </div>
+
+    <div class="ui basic segment">
         {% if app.request.attributes.get('_route') %}
         <div class="ui column">
             <div id="searchresult" class="ui message">
@@ -42,11 +48,20 @@
     </div>
 
 
-
-    <div class="ui three column page grid stackable">
-        {% for entity in entities %}
-            {{ include('FreifunkLinkSinkBundle:Link:link_box.html.twig',{'truncate_summary':true, 'truncate_description': true}) }}
-        {% endfor %}
-    </div>
+    {% if entities|length > 0 %}
+        <div class="ui basic segment">
+            <div class="ui cards">
+                {% for entity in entities %}
+                    {{ include('FreifunkLinkSinkBundle:Link:link_box.html.twig',{'truncate_summary':true, 'truncate_description': true}) }}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="ui one column page grid stackable">
+            <div class="ui column">
+                <p>Es konnten keine Termine gefunden werden.</p>
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

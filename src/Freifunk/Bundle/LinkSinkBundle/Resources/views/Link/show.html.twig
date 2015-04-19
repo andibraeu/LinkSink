@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block body -%}
-    <div class="ui one column page grid">
-      {{ include('FreifunkLinkSinkBundle:Link:link_box.html.twig',{'entity' : entity}) }}
+    <div class="ui basic segment">
+      {{ include('FreifunkLinkSinkBundle:Link:link_box.html.twig',{'entity' : entity,'detail' : true}) }}
     </div>
 {% endblock %}

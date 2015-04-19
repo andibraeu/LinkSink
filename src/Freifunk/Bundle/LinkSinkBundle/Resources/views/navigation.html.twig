@@ -1,8 +1,8 @@
-<header class="ui fixed main menu inverted transparent ">
+<header class="ui fixed primary inverted main menu">
     <div class="ui one column page grid">
         <div class="ui column">
-            <div class="title item"><a href="{{ path('') }}">Freifunk LinkSink</a></div>
-            <div class="item"><a href="{{ path('_new') }}"><i class="add sign box icon"></i> Neuer Link</a> </div>
+            <div class="title {% if app.request.pathinfo == path('') %}active {% endif %}item"><a href="{{ path('') }}">Freifunk LinkSink</a></div>
+            <div class="{% if app.request.pathinfo == path('_new') %}active {% endif %}item"><a href="{{ path('_new') }}">Neuer Link</a></div>
             <div class="right menu">
                 <div class="item">
                     <a title="Zieh das in deine Bookmarkleiste und klicke darauf, wenn du eine interessante Seite findest." class="btn btn-default" href="{{ content("./js/bookmarklet/bookmarklet_loader.txt") }}">

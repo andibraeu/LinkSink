@@ -4,14 +4,12 @@
 
     <title>{% block title %}Linkverwaltung Freifunk LinkSink{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <link href="/semantic/dist/semantic.css" rel="stylesheet">
     {% stylesheets filter="compass"
         "@FreifunkLinkSinkBundle/Resources/assets/css/main.scss"
-        "css/semantic.scss"
         "css/custom.scss"
     %}
-    <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+    <link rel="stylesheet" href="{{ asset_url }}"/>
     <link rel="stylesheet" href="{{ asset('css/selectize.css') }}"/>
     {% endstylesheets %}
     {% block css %}
@@ -37,11 +35,11 @@
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/selectize.min.js') }}"></script>
 
-<div id="main" class="segment">
+<div id="main">
     {% block body %}{% endblock %}
 </div>
 <!-- Include all JavaScripts, compiled by Assetic -->
-<script src="{{ asset('js/semantic.js') }}"></script>
+<script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

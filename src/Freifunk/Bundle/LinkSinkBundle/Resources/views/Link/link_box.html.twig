@@ -1,54 +1,51 @@
-<div class="ui column">
-    <div class="ui segment link box">
-        <h2 class="ui dividing header segment green inverted"><a
+<div class="ui {% if (detail|default(false)) %}fluid {% endif %}card">
+    <div class="content">
+        <h2 class="ui primary dividing header"><a
                     href="{{ path('_show', { 'slug': entity.slug }) }}">{{ entity.title }}</a>
         </h2>
 
-        <p class="edit">
-            <a href="{{ path('_edit', {'slug' : entity.slug }) }}"><i
-                        class="circular icon edit green inverted link"></i>Bearbeiten</a>
-        </p>
-        
-	<p class="delete">
-            <a href="{{ path('_delete', {'slug' : entity.slug }) }}"><i
-                        class="circular icon trash green inverted link"></i>Löschen</a>
-        </p>
-
-        <p class="pubdate ">
-            <i class="circular icon calendar green inverted link" title="Veröffentlicht am"
-               data-content="Veröffentlicht am"></i>{{ entity.pubdate.format('Y-m-d') }}
-        </p>
+        <div class="meta">
+            <div class="ui primary compact small label">
+                <i class="icon calendar" title="Veröffentlicht am"
+                   data-content="Veröffentlicht am"></i>{{ entity.pubdate.format('Y-m-d') }}
+            </div>
 
 
-        {% if entity.tags|length > 0 %}
-            <ul class="tags">
-                {% for tag in entity.tags %}
-                    <li class="tag"><a href="{{ path('tag_show',{'slug' : tag.slug }) }}"><i
-                                    class="circular icon tag green inverted link" data-content="Tags"></i>{{ tag.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        {% if entity.url|length > 0 %}
-            <p class="url">
-                <a href="{{ entity.url }}" target="_blank"><i class="circular icon globe green inverted link" data-content="Link zum Beitrag"></i>Direkt zum Beitrag</a>
-            </p>
-        {% endif %}
-
-        {%  if entity.enclosure is not null %}
-            {% if entity.enclosure.length > 0 %}
-                <p class="enclosure">
-                    <a href="{{ entity.enclosure.url }}" target="_blank"><i class="circular icon music green inverted link" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
-                </p>
+            {% if entity.tags|length > 0 %}
+                    {% for tag in entity.tags %}
+                        <a class="ui primary compact small label" href="{{ path('tag_show',{'slug' : tag.slug }) }}">
+                            <i class="icon tag" data-content="Tags"></i>{{ tag.name }}</a>
+                    {% endfor %}
             {% endif %}
+
+            {% if entity.url|length > 0 %}
+                <a class="ui primary compact small label" href="{{ entity.url }}" target="_blank"><i class="icon globe" data-content="Link zum Beitrag"></i>Direkt zum Beitrag</a>
+            {% endif %}
+
+            {%  if entity.enclosure is not null %}
+                {% if entity.enclosure.length > 0 %}
+                    <p class="enclosure">
+                        <a href="{{ entity.enclosure.url }}" target="_blank"><i class="circular icon music green inverted link" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
+                    </p>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="">
+
+            {% if truncate_description|default(false) %}
+                <p>{{ entity.description|truncate(255)|markdown }}</p>
+            {% else %}
+                <p>{{ entity.description|markdown }}</p>
+            {% endif %}
+        </div>
+        {% if (detail|default(false)) %}
+             <a class="ui primary tiny compact labeled icon button" href="{{ path('_edit', {'slug' : entity.slug }) }}"><i
+                            class="edit icon"></i>Bearbeiten</a>
+
+                <a class="ui primary tiny compact labeled icon button" href="{{ path('_delete', {'slug' : entity.slug }) }}"><i
+                            class="icon trash"></i>Löschen</a>
         {% endif %}
 
-        <div class="ui clearing divider"></div>
-
-        {% if truncate_description|default(false) %}
-            <p>{{ entity.description|truncate(255)|markdown }}</p>
-        {% else %}
-            <p>{{ entity.description|markdown }}</p>
-        {% endif %}
     </div>
 </div>
