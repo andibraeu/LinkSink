@@ -8,7 +8,7 @@
 
 ## Anleitung
 
-Diese Anleitung geht davon aus das du SSH-Zugriff auf deinen Server hast. Wenn du Calcifer auf einem Shared-Hosting-Anbieter installieren willst, so ist dies auch möglich, aber etwas komplizierter und wird irgendwann später beschrieben.
+Diese Anleitung geht davon aus das du SSH-Zugriff auf deinen Server hast. Wenn du LinkSink auf einem Shared-Hosting-Anbieter installieren willst, so ist dies auch möglich, aber etwas komplizierter und wird irgendwann später beschrieben.
 
 1. Das [Repo](https://github.com/andibraeu/LinkSink.git) irgendwo hin clonen
 2. In das LinkSink Verzeichnis wechseln.
