@@ -10,3 +10,8 @@
 /bin/
 /composer.phar
 /app/linksink.sqlite3
+/web/css/semantic.css
+/web/js/semantic.js
+/web/css/selectize.css
+/web/js/selectize.min.js
+/web/js/jquery-3.1.1.js
