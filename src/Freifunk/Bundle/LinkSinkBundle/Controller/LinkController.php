@@ -94,6 +94,11 @@ class LinkController extends Controller
                 'category' => $request->get('category'),
                 'tag' => $request->get('tag'),
             )));
+        } elseif ($request->get('tag') && $request->get('year')) {
+            return $this->redirect($this->generateUrl('year_tag_filter', array(
+                'year' => $request->get('year'),
+                'tag' => $request->get('tag'),
+            )));
         } elseif ($request->get('category')) {
             return $this->redirect($this->generateUrl('category_filter', array(
                 'category' => $request->get('category'),
@@ -101,6 +106,10 @@ class LinkController extends Controller
         } elseif ($request->get('tag')) {
             return $this->redirect($this->generateUrl('tag_show', array(
                 'slug' => $request->get('tag'),
+            )));
+        } elseif ($request->get('year')) {
+            return $this->redirect($this->generateUrl('year_filter', array(
+                'year' => $request->get('year'),
             )));
         }
         else {
