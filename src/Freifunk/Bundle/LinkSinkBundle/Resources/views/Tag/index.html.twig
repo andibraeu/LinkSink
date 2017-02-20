@@ -17,19 +17,24 @@
 
 {% block body -%}
     {% if app.request.query.get('deletedname') !='' %}
-        <div class="ui one column page grid">
-            <div class="column">
-                <div id="mission-statement" class="ui message ">
-                    Tag <strong>{{ app.request.query.get('deletedname') }}</strong> gelöscht.
+        <div class="ui basic segment">
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">
+                    <div id="mission-statement" class="ui message ">
+                        Link <strong>{{ app.request.query.get('deletedname') }}</strong> gelöscht.
+                    </div>
                 </div>
             </div>
         </div>
     {% endif %}
+
     {% if app.request.query.get('haslinksname') !='' %}
-        <div class="ui one column page grid">
-            <div class="column">
-                <div id="mission-statement" class="ui message yellow">
-                    Tag <strong>{{ app.request.query.get('haslinksname') }}</strong> ist noch mit Links verbunden.
+        <div class="ui basic segment">
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">
+                    <div id="mission-statement" class="ui message yellow">
+                        Tag <strong>{{ app.request.query.get('haslinksname') }}</strong> ist noch mit Links verbunden.
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,7 +42,7 @@
     <div class="ui one column page grid title">
         <div class="ui column">
             <h1 class="ui header">
-                Kategorien
+                Tags
             </h1>
         </div>
     </div>
