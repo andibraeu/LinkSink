@@ -33,12 +33,12 @@
         "incenteev/composer-parameter-handler": "~2.1",
         "jquery/jquery": "3.1.*",
         "knplabs/knp-markdown-bundle": "~1.5",
-        "enko/ics": "~0.2",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "jbroadway/urlify" : "^1.0",
         "argentum/feed-bundle": "1.0.x-dev",
-        "semantic/ui": "~2.2.6"
+        "semantic/ui": "~2.2.6",
+        "grimmlink/selectize": "0.12.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -59,7 +59,11 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "cp vendor/semantic/ui/dist/semantic.css web/css/",
-            "cp vendor/semantic/ui/dist/semantic.js web/js/"
+            "cp -r vendor/semantic/ui/dist/themes web/css/",
+            "cp vendor/semantic/ui/dist/semantic.js web/js/",
+            "cp vendor/grimmlink/selectize/css/selectize.css web/css",
+            "cp vendor/grimmlink/selectize/js/standalone/selectize.min.js web/js",
+            "cp vendor/jquery/jquery/jquery-3.1.1.js web/js"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -69,7 +73,11 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "cp vendor/semantic/ui/dist/semantic.css web/css/",
-            "cp vendor/semantic/ui/dist/semantic.js web/js/"
+            "cp -r vendor/semantic/ui/dist/themes web/css/",
+            "cp vendor/semantic/ui/dist/semantic.js web/js/",
+            "cp vendor/grimmlink/selectize/css/selectize.css web/css",
+            "cp vendor/grimmlink/selectize/js/standalone/selectize.js web/js",
+            "cp vendor/jquery/jquery/jquery-3.1.1.js web/js"
         ]
     },
     "config": {
