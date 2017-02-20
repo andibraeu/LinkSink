@@ -4,36 +4,36 @@
 (function () {
   
   // config
-  var apiURL = "http://rss.freifunk.net/links/neu";
+  var apiURL = "https://rss.freifunk.net/links/neu";
   // 
   
   // jQuery should have been loaded by the wrapper
-  if (!$().jquery) { fail("No jQuery found! It's a bug, please report it."); }
+  if (!jQuery().jquery) { fail("No jQuery found! It's a bug, please report it."); }
 
   //SiteName  
   var mySiteName = null;
-  if ( $('meta[property="og:site_name"]').length>0) {
-    mySiteName = $('head').find('meta[property="og:site_name"]').prop('content');
+  if ( jQuery('meta[property="og:site_name"]').length>0) {
+    mySiteName = jQuery('head').find('meta[property="og:site_name"]').prop('content');
   }
 
   //Title 
-  if ( $('meta[property="og:title"]').length>0) {
-    var myTitle = $('meta[property="og:title"]').attr('content');
+  if ( jQuery('meta[property="og:title"]').length>0) {
+    var myTitle = jQuery('meta[property="og:title"]').attr('content');
   } else {
     var myTitle = document.title;
   }
 
   //URL
-  if ( $('meta[property="og:url"]').length>0) {
-    var myUrl = $('meta[property="og:url"]').attr('content');
+  if ( jQuery('meta[property="og:url"]').length>0) {
+    var myUrl = jQuery('meta[property="og:url"]').attr('content');
   } else {
     var myUrl = window.location.href;
   }
 
   //Description
   var myDescription = null;
-  if ( $('meta[property="og:description"]').length>0) {
-    var myDescription = $('meta[property="og:description"]').attr('content');
+  if ( jQuery('meta[property="og:description"]').length>0) {
+    var myDescription = jQuery('meta[property="og:description"]').attr('content');
   }
 
   if (mySiteName) {
@@ -45,7 +45,7 @@
     title: myTitle || "(Unknown Title)",
     url: myUrl || null,
     description: myDescription || "",
-    date: new Date($('meta[name="date"]').attr('content'))
+    date: new Date(jQuery('meta[name="date"]').attr('content'))
   };
   
   // a missing URL is a hard error

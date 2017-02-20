@@ -17,13 +17,13 @@
         };
         a.getElementsByTagName('head')[0].appendChild(c);
     }
-})(window, document, "1.11.1", function($, L) {
+})(window, document, "1.11.1", function(jQuery, L) {
   
   // config:
   var scriptURL = "//rss.freifunk.net/js/bookmarklet/bookmarklet.js";
 
   // jQuery has loaded, now load and execute the actual script
-  $.getScript(scriptURL, function (script, textStatus, jqXHR) {
+    jQuery.getScript(scriptURL, function (script, textStatus, jqXHR) {
     if (jqXHR.status !== 200) {
       console.error("Loading of Bookmarklet Script failed!", textStatus);
     }
