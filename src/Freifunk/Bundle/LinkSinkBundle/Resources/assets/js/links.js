@@ -45,7 +45,6 @@ jQuery(document).ready(function () {
 
     if (jQuery('#link_pubdate').length > 0) {
         jQuery('#link_pubdate').datepicker({dateFormat: 'yy-mm-dd'}).keydown(function (e) {
-            e.preventDefault();
             //   TAB: 9
             //  LEFT: 37
             //    UP: 38
@@ -54,41 +53,35 @@ jQuery(document).ready(function () {
             //             IE        OTHER
             var code = e.keyCode || e.which;
             // If key is not TAB
-            if (code != '9') {
-                // And arrow keys used "for performance on other keys"
-                if (code == '37' || code == '38' || code == '39' || code == '40') {
-                    // Get current date
-                    var parts = $(this).val().split("/");
-                    var currentDate = jQuery('#link_pubdate').datepicker("getDate");
-                    if (currentDate == null) {
-                        currentDate = new Date();
-                    }
-                    // Show next/previous day/week
-                    switch (code) {
-                        // LEFT, -1 day
-                        case 37:
-                            currentDate.setDate(currentDate.getDate() - 1);
-                            break;
-                        // UP, -1 week
-                        case 38:
-                            currentDate.setDate(currentDate.getDate() - 7);
-                            break;
-                        // RIGHT, +1 day
-                        case 39:
-                            currentDate.setDate(currentDate.getDate() + 1);
-                            break;
-                        // DOWN, +1 week
-                        case 40:
-                            currentDate.setDate(currentDate.getDate() + 7);
-                            break;
-                    }
-                    // If result is ok then write it
-                    if (currentDate != null) {
-                        jQuery('#link_pubdate').datepicker("setDate", currentDate);
-                    }
-                } else {
-                    return false;
-                } // If other keys pressed.. return false
+            if (code == '37' || code == '38' || code == '39' || code == '40') {
+                e.preventDefault();
+                var currentDate = jQuery('#link_pubdate').datepicker("getDate");
+                if (currentDate == null) {
+                    currentDate = new Date();
+                }
+                // Show next/previous day/week
+                switch (code) {
+                    // LEFT, -1 day
+                    case 37:
+                        currentDate.setDate(currentDate.getDate() - 1);
+                        break;
+                    // UP, -1 week
+                    case 38:
+                        currentDate.setDate(currentDate.getDate() - 7);
+                        break;
+                    // RIGHT, +1 day
+                    case 39:
+                        currentDate.setDate(currentDate.getDate() + 1);
+                        break;
+                    // DOWN, +1 week
+                    case 40:
+                        currentDate.setDate(currentDate.getDate() + 7);
+                        break;
+                }
+                // If result is ok then write it
+                if (currentDate != null) {
+                    jQuery('#link_pubdate').datepicker("setDate", currentDate);
+                }
             }
         });
     }
