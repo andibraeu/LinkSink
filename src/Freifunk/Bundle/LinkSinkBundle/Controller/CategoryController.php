@@ -24,6 +24,54 @@ class CategoryController extends Controller
 {
 
     /**
+     * @Route("/s/{category}.{format}", defaults={"year" = "", "tag" = "", "format"="html"}, name="old_category_filter")
+     * @Route("/s/{category}/{year}.{format}", requirements={"year" = "\d{4}"}, defaults={"tag" = "", "format"="html"}, name="old_category_filter_year")
+     * @Route("/s/{category}/{year}/{tag}.{format}", requirements={"year" = "\d{4}"}, defaults={"format"="html"}, name="old_category_filter_year_tag")
+     * @Route("/s/{category}/{tag}.{format}", requirements={"tag" = "[A-Za-z0-9\-]+"}, defaults={"year" = "", "format"="html"}, name="old_category_filter_tag")
+     * @Method("GET")
+     * @Template("FreifunkLinkSinkBundle:Link:index.html.twig")
+     */
+    public function showAction($category, $year, $tag, $format)
+    {
+        $myRoute = $this->container->get("request")->get("_route");
+        if ($myRoute === "old_category_filter" ) {
+            return $this->redirectToRoute(str_replace("old_", "", $myRoute),
+                array(
+                    "category" => $category,
+                    "format" => $format
+                ),
+                301);
+        } else if ($myRoute === "old_category_filter_year" ) {
+            return $this->redirectToRoute(str_replace("old_", "", $myRoute),
+                array(
+                    "category" => $category,
+                    "year" => $year,
+                    "format" => $format
+                ),
+                301);
+        } else if ($myRoute === "old_category_filter_year_tag" ) {
+            return $this->redirectToRoute(str_replace("old_", "", $myRoute),
+                array(
+                    "category" => $category,
+                    "year" => $year,
+                    "tag" => $tag,
+                    "format" => $format
+                ),
+                301);
+        } else if ($myRoute === "old_category_filter_tag" ) {
+            return $this->redirectToRoute(str_replace("old_", "", $myRoute),
+                array(
+                    "category" => $category,
+                    "tag" => $tag,
+                    "format" => $format
+                ),
+                301);
+        } else {
+            return $this->redirect("/");
+        }
+    }
+
+    /**
      * @Route("/", name="category_show")
      * @Method("GET")
      * @Template()
