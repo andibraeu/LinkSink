@@ -25,7 +25,8 @@
             {%  if entity.enclosure is not null %}
                 {% if entity.enclosure.length > 0 %}
                     <p class="enclosure">
-                        <a href="{{ entity.enclosure.url }}" target="_blank"><i class="circular icon music green inverted link" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
+                        <a class="ui primary compact small label" href="{{ entity.enclosure.url }}" target="_blank">
+                            <i class="icon music" data-content="Mediendatei zum Beitrag"></i>Mediendatei ansehen/abspielen</a>
                     </p>
                 {% endif %}
             {% endif %}
