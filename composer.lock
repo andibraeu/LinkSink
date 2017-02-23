@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "efc81e43a2621311a52e5b4dd6fd0fa9",
+    "content-hash": "38e5a646ac2e1b4b4c29dfae9192ea75",
     "packages": [
         {
             "name": "argentum/feed-bundle",
@@ -1681,16 +1681,16 @@
         },
         {
             "name": "semantic/ui",
-            "version": "2.2.7",
+            "version": "2.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Semantic-Org/Semantic-UI.git",
-                "reference": "22acbc26714637a5f0e1248c22aea16622f9822e"
+                "reference": "6389e62e204e1e6a792cdbb29cd23b65112947c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/22acbc26714637a5f0e1248c22aea16622f9822e",
-                "reference": "22acbc26714637a5f0e1248c22aea16622f9822e",
+                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/6389e62e204e1e6a792cdbb29cd23b65112947c1",
+                "reference": "6389e62e204e1e6a792cdbb29cd23b65112947c1",
                 "shasum": ""
             },
             "type": "library",
@@ -1714,7 +1714,7 @@
                 "semantic",
                 "ui"
             ],
-            "time": "2016-12-21T20:27:28+00:00"
+            "time": "2017-02-21T18:05:03+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -3241,85 +3241,6 @@
             "time": "2017-01-26T22:05:40+00:00"
         },
         {
-            "name": "npm-asset/jquery",
-            "version": "3.1.1",
-            "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/jquery/-/jquery-3.1.1.tgz",
-                "reference": null,
-                "shasum": "347c1c21c7e004115e0a4da32cece041fad3c8a3"
-            },
-            "require-dev": {
-                "npm-asset/babel-preset-es2015": "6.6.0",
-                "npm-asset/commitplease": "2.6.1",
-                "npm-asset/core-js": "2.2.2",
-                "npm-asset/cross-spawn": "2.2.3",
-                "npm-asset/eslint-config-jquery": "1.0.0",
-                "npm-asset/grunt": "1.0.1",
-                "npm-asset/grunt-babel": "6.0.0",
-                "npm-asset/grunt-cli": "1.2.0",
-                "npm-asset/grunt-compare-size": "0.4.2",
-                "npm-asset/grunt-contrib-uglify": "1.0.1",
-                "npm-asset/grunt-contrib-watch": "1.0.0",
-                "npm-asset/grunt-eslint": "19.0.0",
-                "npm-asset/grunt-git-authors": "3.2.0",
-                "npm-asset/grunt-jsonlint": "1.0.7",
-                "npm-asset/grunt-newer": "1.2.0",
-                "npm-asset/grunt-npmcopy": "0.1.0",
-                "npm-asset/gzip-js": "0.3.2",
-                "npm-asset/husky": "0.11.4",
-                "npm-asset/insight": "0.8.1",
-                "npm-asset/jsdom": "5.6.1",
-                "npm-asset/load-grunt-tasks": "3.5.0",
-                "npm-asset/native-promise-only": "0.8.1",
-                "npm-asset/promises-aplus-tests": "2.1.2",
-                "npm-asset/q": "1.4.1",
-                "npm-asset/qunit-assert-step": "1.0.3",
-                "npm-asset/qunitjs": "1.23.1",
-                "npm-asset/requirejs": "2.2.0",
-                "npm-asset/sinon": "1.17.3",
-                "npm-asset/sizzle": "2.3.3",
-                "npm-asset/strip-json-comments": "2.0.1",
-                "npm-asset/testswarm": "1.1.0"
-            },
-            "type": "npm-asset-library",
-            "extra": {
-                "npm-asset-bugs": {
-                    "url": "https://github.com/jquery/jquery/issues"
-                },
-                "npm-asset-main": "dist/jquery.js",
-                "npm-asset-directories": [],
-                "npm-asset-repository": {
-                    "type": "git",
-                    "url": "git+https://github.com/jquery/jquery.git"
-                },
-                "npm-asset-scripts": {
-                    "build": "npm install && grunt",
-                    "start": "grunt watch",
-                    "test": "grunt && grunt test:slow",
-                    "precommit": "grunt lint:newer",
-                    "commitmsg": "node node_modules/commitplease"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jQuery Foundation and other contributors",
-                    "url": "https://github.com/jquery/jquery/blob/3.1.1/AUTHORS.txt"
-                }
-            ],
-            "description": "JavaScript library for DOM operations",
-            "homepage": "https://jquery.com",
-            "keywords": [
-                "browser",
-                "javascript",
-                "jquery",
-                "library"
-            ]
-        },
-        {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0",
             "source": {
@@ -3530,23 +3451,23 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.5",
+            "version": "4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c19cfc7cbb0e9338d8c469c7eedecc2a428b0971"
+                "reference": "ca060f645beeddebedb1885c97bf163e93264c35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c19cfc7cbb0e9338d8c469c7eedecc2a428b0971",
-                "reference": "c19cfc7cbb0e9338d8c469c7eedecc2a428b0971",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ca060f645beeddebedb1885c97bf163e93264c35",
+                "reference": "ca060f645beeddebedb1885c97bf163e93264c35",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
                 "phpunit/php-file-iterator": "~1.3",
                 "phpunit/php-text-template": "~1.2",
-                "phpunit/php-token-stream": "^1.4.2",
+                "phpunit/php-token-stream": "^1.4.2 || ^2.0",
                 "sebastian/code-unit-reverse-lookup": "~1.0",
                 "sebastian/environment": "^1.3.2 || ^2.0",
                 "sebastian/version": "~1.0|~2.0"
@@ -3589,7 +3510,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-20T15:06:43+00:00"
+            "time": "2017-02-23T07:38:02+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3725,16 +3646,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3b402f65a4cc90abf6e1104e388b896ce209631b",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
                 "shasum": ""
             },
             "require": {
@@ -3770,20 +3691,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2016-11-15T14:06:22+00:00"
+            "time": "2017-02-23T06:14:45+00:00"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.13",
+            "version": "5.7.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34"
+                "reference": "4906b8faf23e42612182fd212eb6f4c0f2954b57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
-                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4906b8faf23e42612182fd212eb6f4c0f2954b57",
+                "reference": "4906b8faf23e42612182fd212eb6f4c0f2954b57",
                 "shasum": ""
             },
             "require": {
@@ -3807,7 +3728,7 @@
                 "sebastian/global-state": "^1.1",
                 "sebastian/object-enumerator": "~2.0",
                 "sebastian/resource-operations": "~1.0",
-                "sebastian/version": "~1.0|~2.0",
+                "sebastian/version": "~1.0.3|~2.0",
                 "symfony/yaml": "~2.1|~3.0"
             },
             "conflict": {
@@ -3852,7 +3773,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-02-10T09:05:10+00:00"
+            "time": "2017-02-19T07:22:16+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4244,16 +4165,16 @@
         },
         {
             "name": "sebastian/object-enumerator",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-enumerator.git",
-                "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35"
+                "reference": "1311872ac850040a79c3c058bea3e22d0f09cbb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
-                "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/1311872ac850040a79c3c058bea3e22d0f09cbb7",
+                "reference": "1311872ac850040a79c3c058bea3e22d0f09cbb7",
                 "shasum": ""
             },
             "require": {
@@ -4286,7 +4207,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2016-11-19T07:35:10+00:00"
+            "time": "2017-02-18T15:18:39+00:00"
         },
         {
             "name": "sebastian/recursion-context",

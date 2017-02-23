@@ -44,7 +44,6 @@
         "sensio/generator-bundle": "^3.0",
         "phpunit/phpunit": "^5.4",
         "liip/functional-test-bundle": "^1.6",
-        "npm-asset/jquery": "~3.1",
         "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
