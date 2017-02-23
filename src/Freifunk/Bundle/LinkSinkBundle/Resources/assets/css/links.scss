@@ -1,6 +1,6 @@
 .card {
   h2 {
-    margin-bottom: 1.3em !important;
+    margin-bottom: 0.3em !important;
     a {
       color: inherit;
     }
@@ -13,26 +13,11 @@
   }
 }
 
-
-
-form .ui.form {
-  .field {
-    .attached-label > input, .attached-label > textarea {
-      margin-bottom: 2rem;
-    }
-    .attached-geo-label > input, .attached-geo-label > textarea {
-      margin-bottom: 3.2rem;
-    }
+#link-form {
+  textarea {
+    height: auto;
+    max-height: none;
   }
-  .selectize-input {
-    line-height: 25px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0.3125em;
-  }
-}
-
-#map {
-  height: 20rem;
 }
 
 .oos {

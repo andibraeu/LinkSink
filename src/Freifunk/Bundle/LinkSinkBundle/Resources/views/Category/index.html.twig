@@ -17,19 +17,23 @@
 
 {% block body -%}
     {% if app.request.query.get('deletedname') !='' %}
-        <div class="ui one column page grid">
-            <div class="column">
-                <div id="mission-statement" class="ui message ">
-                    Kategorie <strong>{{ app.request.query.get('deletedname') }}</strong> gelöscht.
+        <d<div class="ui basic segment">
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">
+                    <div id="mission-statement" class="ui message ">
+                        Kategorie <strong>{{ app.request.query.get('deletedname') }}</strong> gelöscht.
+                    </div>
                 </div>
             </div>
         </div>
     {% endif %}
     {% if app.request.query.get('haslinksname') !='' %}
-        <div class="ui one column page grid">
-            <div class="column">
-                <div id="mission-statement" class="ui message yellow">
-                    Kategorie <strong>{{ app.request.query.get('haslinksname') }}</strong> ist noch mit Links verbunden.
+        <div class="ui basic segment">
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">
+                    <div id="mission-statement" class="ui message ">
+                        Kategorie <strong>{{ app.request.query.get('haslinksname') }}</strong> ist noch mit Links verbunden.
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,9 +67,9 @@
                         </td>
                         <td>
                             <a href="{{ path('category_edit', {'slug':entity.slug}) }}"><i
-                                        class="circular icon edit green inverted link" title="Bearbeiten"></i></a>
+                                        class="circular icon edit primary link" title="Bearbeiten"></i></a>
                             <a href="{{ path('category_delete', {'slug':entity.slug}) }}"><i
-                                    class="circular icon trash green inverted link" title="Löschen" alt="Löschen"></i></a>
+                                    class="circular icon trash primary link" title="Löschen" alt="Löschen"></i></a>
 
                         </td>
                     </tr>

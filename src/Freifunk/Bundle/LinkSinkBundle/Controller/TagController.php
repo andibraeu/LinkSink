@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Freifunk\Bundle\LinkSinkBundle\Entity\Link;
 use Freifunk\Bundle\LinkSinkBundle\Form\LinkType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -108,6 +109,41 @@ class TagController extends Controller
         return [
             'entities' => $entities,
         ];
+    }
+
+    /**
+     * Finds and displays a Event entity.
+     *
+     * @Route("/query/")
+     * @Method("GET")
+     */
+    public function queryAction(Request $request) {
+        $accepts = AcceptHeader::fromString($this->getRequest()->headers->get('Accept'));
+        if ($accepts->has('application/json')) {
+            $em = $this->getDoctrine()->getManager();
+            /** @var QueryBuilder $qb */
+            $qb = $em->createQueryBuilder();
+            $qb->select(['t'])
+                ->from('FreifunkLinkSinkBundle:Tag', 't')
+                ->where('t.name LIKE :tag')
+                ->orderBy('t.name')
+                ->setParameter('tag', sprintf('%%%s%%',strtolower($request->query->get('q'))));
+            $entities = $qb->getQuery()->execute();
+            $tags = [];
+            foreach($entities as $tag) {
+                /** @var Tag $tag */
+                $tags[] = [
+                    'id' => $tag->id,
+                    'name' => $tag->name,
+                ];
+            }
+            $response = new Response(json_encode($tags));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        } else {
+            return $this->redirect('/');
+        }
     }
 
     /**

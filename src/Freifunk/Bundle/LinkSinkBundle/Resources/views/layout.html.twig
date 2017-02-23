@@ -4,13 +4,11 @@
 
     <title>{% block title %}Linkverwaltung Freifunk LinkSink{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/semantic/dist/semantic.css" rel="stylesheet">
+    <link href="{{ asset('css/semantic.css') }}" rel="stylesheet">
     {% stylesheets filter="compass"
         "@FreifunkLinkSinkBundle/Resources/assets/css/main.scss"
-        "css/custom.scss"
     %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
-    <link rel="stylesheet" href="{{ asset('css/selectize.css') }}"/>
     {% endstylesheets %}
     {% block css %}
 
@@ -19,27 +17,38 @@
 </head>
 
 <body>
-{% include "FreifunkLinkSinkBundle::navigation.html.twig" %}
+<div class="ui sticky">
+    {% include "FreifunkLinkSinkBundle::navigation.html.twig" %}
+</div>
 
-<div class="ui one column page grid">
-    <div class="column">
-        <div id="mission-statement" class="ui message">
-	    LinkSink soll helfen, verteilte Medien zusammenzutragen. Die Entwicklung kann <a href="https://github.com/andibraeu/LinkSink" target="_blank">auf Github</a> unterstützt werden.
-            {% image '@FreifunkLinkSinkBundle/Resources/assets/images/logo.png' %}
-	    <img title="Freifunk-Logo" alt="Freifunk-Logo" src="{{ asset_url }}" class="ui image small floated left" />
-            {% endimage %}
+<div class="ui basic segment">
+    <div class="ui segment">
+        <div class="ui stackable grid">
+            <div class="three wide column">
+                <div class="ui fluid">
+                    <div class="ui tiny image">
+                        {% image '@FreifunkLinkSinkBundle/Resources/assets/images/logo.png' %}
+                        <img title="Freifunk-Logo" alt="Freifunk-Logo" src="{{ asset_url }}" class="" />
+                        {% endimage %}
+                    </div>
+                </div>
+            </div>
+            <div class="thirteen wide column">
+                <p>
+                    LinkSink soll helfen, verteilte Medien zusammenzutragen. Die Entwicklung kann <a href="https://github.com/andibraeu/LinkSink" target="_blank">auf Github</a> unterstützt werden.
+                </p>
+            </div>
         </div>
     </div>
 </div>
-<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/selectize.min.js') }}"></script>
 
 <div id="main">
     {% block body %}{% endblock %}
 </div>
 <!-- Include all JavaScripts, compiled by Assetic -->
-<script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<script src="{{ asset('js/jquery-3.1.1.js') }}"></script>
+<script src="{{ asset('js/semantic.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
