@@ -22,29 +22,29 @@
     "require": {
         "php": ">=5.6",
         "symfony/symfony": "^2.8",
-        "doctrine/orm": "^2.5",
-        "doctrine/doctrine-bundle": "^1.6",
-        "twig/extensions": "^1.3",
+        "doctrine/orm": "2.5.6",
+        "doctrine/doctrine-bundle": "1.6.7",
+        "twig/extensions": "1.4.1",
         "symfony/assetic-bundle": "^2.8",
         "symfony/swiftmailer-bundle": "^2.3",
         "symfony/monolog-bundle": "^2.11",
-        "sensio/distribution-bundle": "^4.0",
-        "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.1",
+        "sensio/distribution-bundle": "4.0.38",
+        "sensio/framework-extra-bundle": "3.0.22",
+        "incenteev/composer-parameter-handler": "2.1.2",
         "jquery/jquery": "3.1.*",
-        "knplabs/knp-markdown-bundle": "~1.5",
+        "knplabs/knp-markdown-bundle": "1.5.1",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "jbroadway/urlify" : "^1.0",
-        "argentum/feed-bundle": "1.0.x-dev",
-        "semantic/ui": "~2.2.6",
+        "jbroadway/urlify" : "1.1.0-stable",
+        "argentum/feed-bundle": "1.0.0",
+        "semantic/ui": "2.2.9",
         "grimmlink/selectize": "0.12.1"
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
-        "phpunit/phpunit": "^5.4",
-        "liip/functional-test-bundle": "^1.6",
-        "doctrine/doctrine-fixtures-bundle": "^2.3"
+        "sensio/generator-bundle": "3.1.2",
+        "phpunit/phpunit": "5.7.14",
+        "liip/functional-test-bundle": "1.7.0",
+        "doctrine/doctrine-fixtures-bundle": "2.3.0"
     },
     "scripts": {
         "post-root-package-install": [
