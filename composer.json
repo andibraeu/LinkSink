@@ -41,7 +41,7 @@
         "grimmlink/selectize": "0.12.1"
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
+        "sensio/generator-bundle": "3.1.7",
         "phpunit/phpunit": "^5.4",
         "liip/functional-test-bundle": "^1.6",
         "doctrine/doctrine-fixtures-bundle": "^2.3"
