@@ -29,7 +29,7 @@
         "symfony/swiftmailer-bundle": "^2.3",
         "symfony/monolog-bundle": "^2.11",
         "sensio/distribution-bundle": "^4.0",
-        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~6.0",
         "incenteev/composer-parameter-handler": "~2.1",
         "jquery/jquery": "3.1.*",
         "knplabs/knp-markdown-bundle": "~1.5",
