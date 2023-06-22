@@ -38,7 +38,7 @@
         "jbroadway/urlify" : "^1.0",
         "argentum/feed-bundle": "1.0.x-dev",
         "semantic/ui": "~2.2.6",
-        "grimmlink/selectize": "0.12.1"
+        "grimmlink/selectize": "0.12.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
